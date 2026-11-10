@@ -1,0 +1,17 @@
+node_modules/
+dist/
+*.apk
+*.tar.gz
+.env*
+!.env.example
+.sites-local/
+.cache/
+.wrangler/
+artifacts/
+output/
+*.zip
+__pycache__/
+*.pyc
+
+!downloads/
+!downloads/*.zip

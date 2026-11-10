@@ -1,0 +1,18 @@
+{
+  "purpose": "Fictional profile portraits for a clearly labeled design demo. Not actual customers or endorsements.",
+  "method": "Built-in image generation",
+  "prompts": [
+    {
+      "key": "aarav",
+      "prompt": "Use case: photorealistic-natural. Asset type: one square avatar for a clearly labeled fictional design-demo profile, not a real customer's identity or endorsement. Subject: an entirely invented adult Indian man around 29, short slightly wavy black hair, subtle stubble, medium brown skin, casual muted navy crew-neck T-shirt. Framing: natural head-and-shoulders portrait, eyes near upper third, centered face with enough room for a circular crop, square composition. Setting: softly out-of-focus neutral indoor background by a window. Lighting: soft daylight, candid smartphone-photo feel, authentic skin texture, relaxed friendly slight smile. Constraints: one person only, fully fictional appearance, no celebrities or known individuals, no writing, logo, badges, star ratings, interface, collage, or endorsement. This image will be visibly marked as an AI portrait in a fictional mockup."
+    },
+    {
+      "key": "neha",
+      "prompt": "Use case: photorealistic-natural. Asset type: one square avatar for a clearly labeled fictional design-demo profile, not a real customer's identity or endorsement. Subject: an entirely invented adult Indian woman around 28, shoulder-length naturally wavy dark hair, warm medium brown skin, understated casual sage-green blouse, no elaborate styling. Framing: natural head-and-shoulders portrait, eyes near upper third, centered face with enough room for a circular crop, square composition. Setting: softly blurred everyday balcony greenery with no recognizable location. Lighting: soft indirect daylight, candid smartphone-photo feel, realistic skin texture, friendly small smile. Constraints: one person only, fully fictional appearance, no celebrities or known individuals, no writing, logo, badges, star ratings, interface, collage, or endorsement. This image will be visibly marked as an AI portrait in a fictional mockup."
+    },
+    {
+      "key": "rohan",
+      "prompt": "Use case: photorealistic-natural. Asset type: one square avatar for a clearly labeled fictional design-demo profile, not a real customer's identity or endorsement. Subject: an entirely invented adult Indian man around 34, short neatly trimmed black hair, neatly trimmed short beard, warm brown skin, a simple muted gray open-collar cotton shirt. Framing: natural head-and-shoulders portrait, centered face with enough room for a circular crop, eyes near upper third, square composition. Setting: softly out-of-focus outdoor garden background with no recognizable location. Lighting: soft open shade, candid smartphone-photo feel, natural skin texture and proportions, relaxed friendly expression. Constraints: one person only, fully fictional appearance, no celebrities or known individuals, no writing, logo, badges, star ratings, interface, collage, or endorsement. This image will be visibly marked as an AI portrait in a fictional mockup."
+    }
+  ]
+}

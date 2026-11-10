@@ -1,0 +1,161 @@
+{
+  "name": "JAIHO777",
+  "origin": "https://realcashgame.app",
+  "language": "en-IN",
+  "locale": "en_IN",
+  "title": "JAIHO777 APK for Android – Download & Play in India",
+  "description": "Download JAIHO777 APK on Android. Play slots, arcade and fishing anytime. Link your mobile number, pay with UPI, and withdraw fast to your Indian bank.",
+  "about": "JAIHO777 is a favourite money game for many players in India. You can play anytime, anywhere on your Android phone—just download the app and start. After you link your mobile number, you can try the demo and enjoy slots, arcade, fishing and more. Pay with UPI and withdraw your winnings quickly to your Indian bank account.",
+  "publisher": "JAIHO777 Games",
+  "publisherVerified": true,
+  "updatedAt": "2026-11-10",
+  "supportHandle": "support@realcashgame.app",
+  "icon": "/assets/brand/app-icon.webp",
+  "iconSmall": "/assets/brand/app-icon-96.webp",
+  "iconLarge": "/assets/brand/app-icon-192.webp",
+  "appleIcon": "/assets/brand/app-icon-play-180.png",
+  "favicon": "/assets/brand/favicon-play.ico",
+  "faviconPng": "/assets/brand/favicon-play-32.png",
+  "socialImage": "/assets/brand/social-preview.jpg",
+  "screenshots": [
+    {
+      "title": "Welcome to JAIHO777",
+      "caption": "App launch",
+      "src": "/assets/screenshots/01-launch.webp",
+      "thumbnailSrc": "/assets/screenshots/01-launch-thumb.webp",
+      "alt": "JAIHO777 Android launch screen with green slot-machine artwork and the official app logo",
+      "width": 573,
+      "height": 1280
+    },
+    {
+      "title": "Sign in with mobile",
+      "caption": "Login",
+      "src": "/assets/screenshots/02-login.webp",
+      "thumbnailSrc": "/assets/screenshots/02-login-thumb.webp",
+      "alt": "JAIHO777 login screen with mobile number and password fields for Indian users",
+      "width": 573,
+      "height": 1280
+    },
+    {
+      "title": "Welcome bonus",
+      "caption": "New member offer",
+      "src": "/assets/screenshots/03-welcome.webp",
+      "thumbnailSrc": "/assets/screenshots/03-welcome-thumb.webp",
+      "alt": "JAIHO777 welcome bonus popup for new members on Android",
+      "width": 573,
+      "height": 1280
+    },
+    {
+      "title": "Game lobby",
+      "caption": "Popular games",
+      "src": "/assets/screenshots/04-lobby.webp",
+      "thumbnailSrc": "/assets/screenshots/04-lobby-thumb.webp",
+      "alt": "JAIHO777 game lobby with slots, lotto and member feature menu",
+      "width": 573,
+      "height": 1280
+    },
+    {
+      "title": "First deposit offers",
+      "caption": "Deposit bonus",
+      "src": "/assets/screenshots/05-deposit.webp",
+      "thumbnailSrc": "/assets/screenshots/05-deposit-thumb.webp",
+      "alt": "JAIHO777 first deposit bonus menu with recharge offers",
+      "width": 573,
+      "height": 1280
+    },
+    {
+      "title": "Promotions & VIP",
+      "caption": "Rewards centre",
+      "src": "/assets/screenshots/06-promotions.webp",
+      "thumbnailSrc": "/assets/screenshots/06-promotions-thumb.webp",
+      "alt": "JAIHO777 promotions screen with deposit bonus, VIP, member cards and referral offers",
+      "width": 573,
+      "height": 1280
+    },
+    {
+      "title": "Fast withdrawals",
+      "caption": "Bank payouts",
+      "src": "/assets/screenshots/07-withdrawals.webp",
+      "thumbnailSrc": "/assets/screenshots/07-withdrawals-thumb.webp",
+      "alt": "JAIHO777 My Transactions withdrawals screen showing successful bank payouts in India",
+      "width": 572,
+      "height": 1280
+    }
+  ],
+  "promoBanner": {
+    "enabled": false
+  },
+  "analytics": {
+    "enabled": false
+  },
+  "attribution": {
+    "keys": [
+      "utm_source",
+      "utm_medium",
+      "utm_campaign",
+      "utm_content",
+      "utm_term",
+      "utm_id",
+      "campaign_id",
+      "source",
+      "ref"
+    ],
+    "maxValueLength": 100,
+    "ttlMinutes": 30
+  },
+  "demoPresentation": {
+    "enabled": true,
+    "ratingValue": "4.8",
+    "ratingCountLabel": "18.6K reviews",
+    "downloadsLabel": "5M+",
+    "reviews": [
+      {
+        "name": "Aarav Sharma",
+        "rating": 5,
+        "posted": "2 Nov 2026",
+        "device": "Samsung Galaxy M34",
+        "helpful": 214,
+        "avatar": "/assets/presentation/demo-aarav.webp",
+        "comment": "Downloaded on my Samsung. Login with mobile number was easy. Games run fine on Jio 4G. I withdrew ₹1,000 to SBI and it came in a few minutes. Good app."
+      },
+      {
+        "name": "Neha Iyer",
+        "rating": 5,
+        "posted": "28 Oct 2026",
+        "device": "Redmi Note 13",
+        "helpful": 176,
+        "avatar": "/assets/presentation/demo-neha.webp",
+        "comment": "Clear download page. Size and Android version are shown before install. UPI deposit was instant. Slots and fishing are fun. Useful for evening play."
+      },
+      {
+        "name": "Rohan Mehta",
+        "rating": 5,
+        "posted": "19 Oct 2026",
+        "device": "Realme Narzo 60",
+        "helpful": 143,
+        "avatar": "/assets/presentation/demo-rohan.webp",
+        "comment": "Installed on Realme without issue. Linked my number, tried demo, then played slots. Bank withdrawal showed Succeed in My Transactions fast."
+      },
+      {
+        "name": "Priya Patel",
+        "rating": 4,
+        "posted": "11 Oct 2026",
+        "device": "Vivo T2",
+        "helpful": 98,
+        "initials": "PP",
+        "comment": "Simple to download and start. Daily offers are nice. Wish there was Gujarati language. Overall good for quick games on phone."
+      },
+      {
+        "name": "Vikram Singh",
+        "rating": 5,
+        "posted": "3 Oct 2026",
+        "device": "OnePlus Nord CE 3",
+        "helpful": 121,
+        "initials": "VS",
+        "comment": "Official APK, clear file size, works on OnePlus. Withdrawal to HDFC was quick. Page looks clean and easy to trust."
+      }
+    ]
+  },
+  "artwork": [],
+  "playStoreIcon": "/assets/presentation/play-store.webp"
+}

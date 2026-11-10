@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /download
+Disallow: /api/
+
+Sitemap: https://realcashgame.app/sitemap.xml

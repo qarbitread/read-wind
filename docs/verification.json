@@ -1,0 +1,42 @@
+{
+  "checkedAt": "2026-11-09T11:46:10.708Z",
+  "scope": "Built Worker handler with the actual configured APK source; no APK execution. Public custom domain and physical Android were not tested.",
+  "presentation": {
+    "baselineVersion": 7,
+    "bodyAndOriginalStylesPreserved": true,
+    "screenshots": 7,
+    "reviews": 3,
+    "demoLabelsRemoved": true,
+    "withdrawalsBanner": true
+  },
+  "tests": {
+    "passed": 21,
+    "failed": 0
+  },
+  "download": {
+    "status": 200,
+    "headStatus": 200,
+    "rangeStatus": 206,
+    "sizeBytes": 47516594,
+    "sha256": "98a17333248a699ecf1ecb1e78f590216f5f29ce5f55d067c557084f36f52076",
+    "contentType": "application/vnd.android.package-archive",
+    "attachment": true,
+    "redirect": false
+  },
+  "browser": {
+    "desktopChecked": true,
+    "mobileFramesChecked": [
+      320,
+      390
+    ],
+    "horizontalOverflowObserved": false,
+    "fullScreenshotDimensions": [
+      573,
+      1280
+    ],
+    "privacyDialogChecked": true
+  },
+  "lighthouse": {
+    "measured": false
+  }
+}
