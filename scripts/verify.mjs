@@ -91,12 +91,13 @@ check('public export excludes source, configuration, repositories and APK copies
 });
 for (const file of allFiles.filter(file => /\.(html|js|css|xml|txt)$/.test(file))) {
   const text = await readFile(file, 'utf8');
-  assert.equal(text.includes(release.url), false, `server-only URL leaked in ${file}`);
-  assert.equal(text.includes(new URL(release.url).hostname), false, `server-only host leaked in ${file}`);
   assert.equal(text.includes('sourceMappingURL'), false, file);
   assert.equal(text.includes('{{'), false, file);
 }
-checks.push('no private download source or unresolved placeholders in public text');
+const indexHtml = await readFile(path.join(dist, 'public', 'index.html'), 'utf8');
+assert.equal(indexHtml.includes(`href="${release.url}"`), true, 'Install buttons must point at the release APK URL');
+assert.equal((indexHtml.match(new RegExp(`href="${release.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g')) || []).length >= 2, true);
+checks.push('Install buttons use the direct release APK URL with no unresolved placeholders');
 for (const url of Object.values(report.assetManifest)) await stat(path.join(dist, 'public', url));
 checks.push('every hashed browser asset exists');
 

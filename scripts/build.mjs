@@ -74,8 +74,8 @@ const pages={...rendered};
 for(const key of ['index','privacy','notFound','downloadError']){
   pages[key]=await minify(rendered[key],{collapseWhitespace:true,conservativeCollapse:true,removeComments:true,removeAttributeQuotes:false,collapseBooleanAttributes:true,minifyCSS:false,minifyJS:false});
   if(pages[key].includes('{{'))throw new Error(`Unresolved template data in ${key}`);
-  if(pages[key].includes(release.url)||pages[key].includes(new URL(release.url).hostname))throw new Error('A server-only APK URL leaked into public HTML');
 }
+if(!pages.index.includes(`href="${release.url}"`))throw new Error('Install buttons must use the direct release APK URL');
 const publicPages={'index.html':pages.index,'privacy/index.html':pages.privacy,'404.html':pages.notFound,'robots.txt':pages.robots,'sitemap.xml':pages.sitemap};
 for(const [relative,body]of Object.entries(publicPages))await writeFile(path.join(output,'public',relative),body);
 await writeFile(path.join(output,'readable/index.html'),readableHtml(rendered.index));

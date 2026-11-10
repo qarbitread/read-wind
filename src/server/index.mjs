@@ -61,7 +61,8 @@ export function createWorker({ site, release, assets, pages, fetchImpl = (...arg
       }
       if (path === '/') {
         const labels = new URLSearchParams(collectAttribution(url.searchParams, site.attribution)).toString();
-        const page = labels ? pages.index.replaceAll('href="/download"', `href="/download?${htmlEscape(labels)}"`) : pages.index;
+        const apkHref = `href="${htmlEscape(release.url)}"`;
+        const page = labels ? pages.index.replaceAll(apkHref, `href="${htmlEscape(release.url)}?${htmlEscape(labels)}"`) : pages.index;
         return htmlResponse(request, page, 200, labels ? { 'Cache-Control': 'private, no-store' } : {});
       }
       if (path === '/privacy/') return htmlResponse(request, pages.privacy);

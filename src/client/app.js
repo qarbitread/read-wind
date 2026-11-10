@@ -22,9 +22,9 @@
     else if (Object.keys(current).length) sessionStorage.setItem('jaiho777-campaign', JSON.stringify({values:current,expires:Date.now() + config.attribution.ttlMinutes * 60000}));
   } catch { /* Downloads work even when browser storage is disabled. */ }
   for (const link of document.querySelectorAll('[data-download]')) {
-    const target = new URL('/download', document.baseURI);
+    const target = new URL(config.downloadUrl || link.getAttribute('href'), document.baseURI);
     for (const [key,value] of Object.entries(attribution)) target.searchParams.set(key,value);
-    link.href = target.pathname + target.search;
+    link.href = target.href;
     link.addEventListener('click', () => {
       document.getElementById('download-status').textContent = 'APK download requested. Check your browser’s Downloads for progress.';
     });

@@ -101,7 +101,8 @@ test('upstream unsatisfiable ranges become a bounded 416 response', async () => 
 test('campaign attribution reaches both download links without needing JavaScript', async () => {
   const result = await makeWorker().fetch(request('/?utm_source=whatsapp&utm_campaign=launch-a&phone=919876543210&url=https://other.example'));
   const html = await result.text();
-  assert.equal((html.match(/href="\/download\?utm_source=whatsapp&amp;utm_campaign=launch-a"/g) || []).length, 2);
+  const apkLink = `${actualRelease.url}?utm_source=whatsapp&amp;utm_campaign=launch-a`;
+  assert.equal((html.match(new RegExp(`href="${apkLink.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g')) || []).length, 2);
   assert.match(html, new RegExp(`<link rel="canonical" href="${site.origin}/">`));
   assert.equal(html.includes('919876543210'), false);
   assert.equal(result.headers.get('Cache-Control'), 'private, no-store');
@@ -151,7 +152,7 @@ test('SEO routes agree on a clean canonical and contain factual application data
   assert.equal(html.includes('promo-banner'), false);
   const schemas = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
   assert.equal(schemas[0].softwareVersion, actualRelease.version);
-  assert.equal(schemas[0].downloadUrl, site.origin + '/download');
+  assert.equal(schemas[0].downloadUrl, actualRelease.url);
   assert.equal('aggregateRating' in schemas[0], false);
   assert.equal('publisher' in schemas[0], Boolean(site.publisherVerified && site.publisher));
   assert.equal(html.includes('DEMO'), false);

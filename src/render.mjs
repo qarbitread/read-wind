@@ -33,7 +33,7 @@ export function renderPages(site, release, files) {
       name: site.name, operatingSystem: `Android ${release.minimumAndroid}+`,
       applicationCategory: 'GameApplication', softwareVersion: release.version,
       fileSize: `${release.sizeBytes} bytes`, contentRating: '18+',
-      url: `${origin}/`, downloadUrl: `${origin}/download`, image: origin + asset(site.iconLarge),
+      url: `${origin}/`, downloadUrl: release.url, image: origin + asset(site.iconLarge),
       ...(validPublisher ? { publisher: { '@type': 'Organization', name: site.publisher } } : {})
     },
     { '@context': 'https://schema.org', '@type': 'WebSite', name: site.name, url: `${origin}/`, inLanguage: site.language }

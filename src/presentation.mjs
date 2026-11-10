@@ -32,9 +32,11 @@ export function renderPage(config) {
   const e = escapeHtml, a = config.apk, fileSize = sizeLabel(a.sizeBytes);
   const hasScreenshots = config.screenshots.length > 0;
   const gallery = hasScreenshots ? config.screenshots : config.artwork;
-  const download = (location, extra = '') => `<a class="download-button ${extra}" href="/download" download="${e(a.filename)}" data-download data-placement="${location}">${icon('download')}<span>Install</span></a>`;
+  const downloadHref = e(a.url);
+  const download = (location, extra = '') => `<a class="download-button ${extra}" href="${downloadHref}" download="${e(a.filename)}" data-download data-placement="${location}" rel="noopener">${icon('download')}<span>Install</span></a>`;
   const publicConfig = {
     analytics: config.analytics, attribution: config.attribution,
+    downloadUrl: a.url,
     gallery: gallery.map((item, i) => ({title:item.title,html:galleryImage(item, i, true)}))
   };
   const json = JSON.stringify(publicConfig).replace(/</g, '\\u003c');
@@ -42,7 +44,7 @@ export function renderPage(config) {
     '@context':'https://schema.org','@type':'SoftwareApplication',name:config.name,
     operatingSystem:`Android ${a.minimumAndroid}+`,applicationCategory:'GameApplication',
     softwareVersion:a.version,fileSize:`${a.sizeBytes} bytes`,contentRating:'18+',
-    url:config.origin,downloadUrl:`${config.origin}/download`,image:`${config.origin}${config.icon}`,
+    url:config.origin,downloadUrl:a.url,image:`${config.origin}${config.icon}`,
     ...(config.publisherVerified && config.publisher ? {publisher:{'@type':'Organization',name:config.publisher}} : {})
   }).replace(/</g, '\\u003c');
   const publisher = config.publisherVerified && config.publisher;
