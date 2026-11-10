@@ -69,8 +69,36 @@ function zip(files) {
   return Buffer.concat([...local, directory, ending]);
 }
 
-const html = await collect(path.join(root, 'dist/readable'), 'html');
-const exportedAssets = await collect(path.join(root, 'dist/public/assets'), 'html/assets');
+function relativizeHtmlBytes(name, bytes) {
+  let text = bytes.toString('utf8');
+  if (name.endsWith('.css')) {
+    return Buffer.from(
+      text
+        .replaceAll('url(/assets/fonts/', 'url(../fonts/')
+        .replaceAll("url('/assets/fonts/", "url('../fonts/"),
+      'utf8'
+    );
+  }
+  if (!/\.html?$/i.test(name)) return bytes;
+  const prefix = name.includes('/privacy/') ? '../assets/' : 'assets/';
+  return Buffer.from(
+    text
+      .replaceAll('href="/assets/', `href="${prefix}`)
+      .replaceAll('src="/assets/', `src="${prefix}`)
+      .replaceAll('url(/assets/', `url(${prefix}`)
+      .replaceAll("url('/assets/", `url('${prefix}`)
+      .replaceAll('url("/assets/', `url("${prefix}`),
+    'utf8'
+  );
+}
+const html = (await collect(path.join(root, 'dist/readable'), 'html')).map(file => ({
+  ...file,
+  bytes: relativizeHtmlBytes(file.name, file.bytes)
+}));
+const exportedAssets = (await collect(path.join(root, 'dist/public/assets'), 'html/assets')).map(file => ({
+  ...file,
+  bytes: relativizeHtmlBytes(file.name, file.bytes)
+}));
 const common = [
   ...await collect(path.join(root, 'docs'), 'docs'),
   { name: 'README.md', bytes: await readFile(path.join(root, 'README.md')) },
@@ -78,7 +106,17 @@ const common = [
   ...html, ...exportedAssets,
   { name: 'html/robots.txt', bytes: await readFile(path.join(root, 'dist/public/robots.txt')) },
   { name: 'html/sitemap.xml', bytes: await readFile(path.join(root, 'dist/public/sitemap.xml')) },
-  { name: 'html/favicon.ico', bytes: await readFile(path.join(root, 'dist/public/favicon.ico')) }
+  { name: 'html/favicon.ico', bytes: await readFile(path.join(root, 'dist/public/favicon.ico')) },
+  {
+    name: 'html/BACA-INI.txt',
+    bytes: Buffer.from(
+      'Preview HTML: buka index.html di browser setelah mengekstrak folder html/.\n' +
+      'Jika stylesheet tidak muncul, jalankan dari folder html/: python -m http.server 8080\n' +
+      'lalu buka http://localhost:8080/\n' +
+      'Tombol DOWNLOAD APK hanya aktif pada paket deploy (Cloudflare Worker).\n',
+      'utf8'
+    )
+  }
 ];
 const deployment = [
   ...await collect(path.join(root, 'dist/server'), 'server'),
@@ -101,5 +139,49 @@ await rm(readable, { recursive: true, force: true });
 await cp(path.join(root, 'dist/readable'), readable, { recursive: true });
 await cp(path.join(root, 'dist/public/assets'), path.join(readable, 'assets'), { recursive: true });
 for (const filename of ['robots.txt', 'sitemap.xml', 'favicon.ico']) await cp(path.join(root, 'dist/public', filename), path.join(readable, filename));
+
+// Make the HTML preview open correctly via file:// by rewriting absolute /assets paths.
+async function relativizePreview(file, assetPrefix) {
+  let text = await readFile(file, 'utf8');
+  text = text
+    .replaceAll('href="/assets/', `href="${assetPrefix}`)
+    .replaceAll('src="/assets/', `src="${assetPrefix}`)
+    .replaceAll('url(/assets/', `url(${assetPrefix}`)
+    .replaceAll("url('/assets/", `url('${assetPrefix}`)
+    .replaceAll('url("/assets/', `url("${assetPrefix}`);
+  await writeFile(file, text);
+}
+await relativizePreview(path.join(readable, 'index.html'), 'assets/');
+await relativizePreview(path.join(readable, 'privacy/index.html'), '../assets/');
+for (const entry of await readdir(path.join(readable, 'assets/css'))) {
+  if (entry.endsWith('.css')) {
+    const cssFile = path.join(readable, 'assets/css', entry);
+    let css = await readFile(cssFile, 'utf8');
+    css = css.replaceAll('url(/assets/fonts/', 'url(../fonts/').replaceAll("url('/assets/fonts/", "url('../fonts/");
+    await writeFile(cssFile, css);
+  }
+}
+
+// Also ship a ready-to-open preview zip with relative paths for local file viewing.
+const previewFiles = await collect(readable, '03-html-preview');
+previewFiles.push({
+  name: '03-html-preview/BACA-INI.txt',
+  bytes: Buffer.from(
+    'Buka index.html lewat browser setelah mengekstrak folder ini.\n' +
+    'Jika masih rusak, jalankan di folder 03-html-preview:\n' +
+    '  python -m http.server 8080\n' +
+    'lalu buka http://localhost:8080/\n' +
+    'Tombol DOWNLOAD APK hanya berfungsi lewat paket deploy/server, bukan preview HTML.\n',
+    'utf8'
+  )
+});
+const previewZip = zip(previewFiles);
+await writeFile(path.join(output, 'JAIHO777-html-preview.zip'), previewZip);
+manifest.files['JAIHO777-html-preview.zip'] = {
+  bytes: previewZip.length,
+  sha256: createHash('sha256').update(previewZip).digest('hex'),
+  entries: previewFiles.length
+};
+
 await writeFile(path.join(output, 'checksums.json'), JSON.stringify(manifest, null, 2) + '\n');
 console.log(JSON.stringify(manifest, null, 2));
