@@ -12,3 +12,6 @@ output/
 *.zip
 __pycache__/
 *.pyc
+
+!downloads/
+!downloads/*.zip
