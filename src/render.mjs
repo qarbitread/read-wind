@@ -61,6 +61,10 @@ export function renderPages(site, release, files) {
   const presentationConfig = {
     ...site, apk: release, icon: asset(site.icon),
     screenshots: site.screenshots.map(image => ({ ...image, src: asset(image.src), thumbnailSrc: asset(image.thumbnailSrc) })),
+    promoBanner: site.promoBanner?.enabled ? {
+      ...site.promoBanner,
+      image: asset(site.promoBanner.image)
+    } : site.promoBanner,
     demoPresentation: {
       ...site.demoPresentation,
       reviews: (site.demoPresentation?.reviews || []).map(review => ({ ...review, avatar: asset(review.avatar) }))

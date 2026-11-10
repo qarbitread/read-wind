@@ -2,8 +2,8 @@
 
 | Elemen | Implementasi |
 | --- | --- |
-| Judul | `JAIHO777 – Official Android APK Download`, sesuai konfigurasi sebelumnya |
-| Description | `Explore JAIHO777 for Android. View app information, installation instructions, and download the official APK directly.` |
+| Judul | `JAIHO777 APK Download for Android – Official App India` |
+| Description | Official India-focused APK download copy (90–180 karakter) di `config/site.json` |
 | Bahasa / locale | `en-IN` / `en_IN` |
 | Canonical | URL HTTPS bersih tanpa UTM, dari origin konfigurasi |
 | Open Graph | title, description, URL, site name, locale, JPEG 1200×630, tipe dan alt gambar |

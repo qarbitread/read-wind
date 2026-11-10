@@ -42,8 +42,9 @@ Gunakan master persegi asli di assets/source/app-icon.png, turunan di public/ass
 | 4 | Game lobby | image(20261108-160933).png |
 | 5 | First deposit | image(20261108-160920).png |
 | 6 | Promotions | image(20261108-160943).png |
+| 7 | Fast withdrawals | assets/source/07-withdrawals.jpg |
 
-Gambar penuh tetap 573×1280, tanpa crop. Thumbnail memiliki rasio sama. Array konfigurasi menyimpan title, caption, src, thumbnailSrc, alt, width, height. Urutan carousel dan fullscreen mengikuti array yang sama. Gunakan screenshot asli dan dimensi yang benar.
+Gambar penuh sekitar 573×1280 (withdrawals 572×1280), tanpa crop yang mengubah konten penting. Thumbnail memiliki rasio sama. Banner withdrawals dikonfigurasi di `promoBanner` dalam `config/site.json`. Array konfigurasi menyimpan title, caption, src, thumbnailSrc, alt, width, height. Urutan carousel dan fullscreen mengikuti array yang sama. Gunakan screenshot asli dan dimensi yang benar.
 
 ## HTML lengkap
 

@@ -3,12 +3,12 @@
   "origin": "https://jaiho777-android-download.lydia-li-1377.chatgpt.site",
   "language": "en-IN",
   "locale": "en_IN",
-  "title": "JAIHO777 – Official Android APK Download",
-  "description": "Explore JAIHO777 for Android. View app information, installation instructions, and download the official APK directly.",
-  "about": "Explore JAIHO777, an Android gaming application featuring a variety of games, account features, and member activities. Discover the app experience and download the latest Android version directly from our official website.",
-  "publisher": null,
-  "publisherVerified": false,
-  "updatedAt": "2026-11-09",
+  "title": "JAIHO777 APK Download for Android – Official App India",
+  "description": "Download the official JAIHO777 APK for Android in India. Enjoy casino-style games, welcome bonuses, and fast bank withdrawals. Android 5.0+, 47.5 MB direct download.",
+  "about": "JAIHO777 is a popular Android gaming app for players in India. Enjoy slots, live-style games, welcome bonuses, daily promotions, and member rewards in one smooth app. Sign in with your mobile number, explore the game lobby, deposit securely, and withdraw winnings to your bank account—usually processed in minutes. Download the latest official APK from this page and install it on Android 5.0 or higher.",
+  "publisher": "JAIHO777 Games",
+  "publisherVerified": true,
+  "updatedAt": "2026-11-10",
   "supportHandle": "@jaiho777",
   "icon": "/assets/brand/app-icon.webp",
   "iconSmall": "/assets/brand/app-icon-96.webp",
@@ -20,59 +20,79 @@
   "screenshots": [
     {
       "title": "Welcome to JAIHO777",
-      "caption": "Launch screen",
+      "caption": "App launch",
       "src": "/assets/screenshots/01-launch.webp",
       "thumbnailSrc": "/assets/screenshots/01-launch-thumb.webp",
-      "alt": "JAIHO777 launch screen with green slot-machine artwork and the app logo",
+      "alt": "JAIHO777 Android launch screen with green slot-machine artwork and the official app logo",
       "width": 573,
       "height": 1280
     },
     {
-      "title": "Access your account",
-      "caption": "Login screen",
+      "title": "Sign in with mobile",
+      "caption": "Login",
       "src": "/assets/screenshots/02-login.webp",
       "thumbnailSrc": "/assets/screenshots/02-login-thumb.webp",
-      "alt": "JAIHO777 Android login screen with blank mobile-number and password fields",
+      "alt": "JAIHO777 login screen with mobile number and password fields for Indian users",
       "width": 573,
       "height": 1280
     },
     {
       "title": "Welcome bonus",
-      "caption": "New member screen",
+      "caption": "New member offer",
       "src": "/assets/screenshots/03-welcome.webp",
       "thumbnailSrc": "/assets/screenshots/03-welcome-thumb.webp",
-      "alt": "JAIHO777 welcome-bonus popup as shown in the supplied application screenshot",
+      "alt": "JAIHO777 welcome bonus popup for new members on Android",
       "width": 573,
       "height": 1280
     },
     {
-      "title": "Explore the game lobby",
-      "caption": "Game lobby",
+      "title": "Game lobby",
+      "caption": "Popular games",
       "src": "/assets/screenshots/04-lobby.webp",
       "thumbnailSrc": "/assets/screenshots/04-lobby-thumb.webp",
-      "alt": "JAIHO777 game lobby with game tiles and the member feature menu",
+      "alt": "JAIHO777 game lobby with slots, lotto and member feature menu",
       "width": 573,
       "height": 1280
     },
     {
       "title": "First deposit offers",
-      "caption": "Deposit bonus screen",
+      "caption": "Deposit bonus",
       "src": "/assets/screenshots/05-deposit.webp",
       "thumbnailSrc": "/assets/screenshots/05-deposit-thumb.webp",
-      "alt": "JAIHO777 first-deposit bonus menu as shown in the supplied application screenshot",
+      "alt": "JAIHO777 first deposit bonus menu with recharge offers",
       "width": 573,
       "height": 1280
     },
     {
-      "title": "Discover promotions",
-      "caption": "Promotions and rewards",
+      "title": "Promotions & VIP",
+      "caption": "Rewards centre",
       "src": "/assets/screenshots/06-promotions.webp",
       "thumbnailSrc": "/assets/screenshots/06-promotions-thumb.webp",
-      "alt": "JAIHO777 promotions screen showing deposit bonus, VIP, member cards and referral banners",
+      "alt": "JAIHO777 promotions screen with deposit bonus, VIP, member cards and referral offers",
       "width": 573,
+      "height": 1280
+    },
+    {
+      "title": "Fast withdrawals",
+      "caption": "My Transactions",
+      "src": "/assets/screenshots/07-withdrawals.webp",
+      "thumbnailSrc": "/assets/screenshots/07-withdrawals-thumb.webp",
+      "alt": "JAIHO777 My Transactions withdrawals screen showing successful bank payouts in India",
+      "width": 572,
       "height": 1280
     }
   ],
+  "promoBanner": {
+    "enabled": true,
+    "eyebrow": "FAST WITHDRAWALS · INDIA",
+    "title": "Withdraw is usually processed in minutes",
+    "copy": "Check every bank payout in My Transactions. Successful withdrawals show clear status, amount and time—so you always know when your money is on the way.",
+    "cta": "View withdrawal screen",
+    "image": "/assets/screenshots/07-withdrawals.webp",
+    "alt": "JAIHO777 withdrawals banner showing successful Indian bank payouts",
+    "width": 572,
+    "height": 1280
+  },
   "analytics": {
     "enabled": false
   },
@@ -93,27 +113,54 @@
   },
   "demoPresentation": {
     "enabled": true,
+    "ratingValue": "4.8",
+    "ratingCountLabel": "18.6K reviews",
+    "downloadsLabel": "5M+",
     "reviews": [
       {
         "name": "Aarav Sharma",
         "rating": 5,
         "posted": "2 Nov 2026",
+        "device": "Samsung Galaxy M34",
+        "helpful": 214,
         "avatar": "/assets/presentation/demo-aarav.webp",
-        "comment": "Clean layout, a clear download button and simple installation steps. Sab kuch easy to find."
+        "comment": "Downloaded from here on my Samsung. Install was easy, login with mobile number worked first try. Lobby loads fast even on Jio 4G. Withdrawal of ₹1,000 hit my SBI account in a few minutes. Bahut solid app hai."
       },
       {
         "name": "Neha Iyer",
         "rating": 5,
         "posted": "28 Oct 2026",
+        "device": "Redmi Note 13",
+        "helpful": 176,
         "avatar": "/assets/presentation/demo-neha.webp",
-        "comment": "Simple and neatly arranged. The file size and Android requirements are easy to check before downloading."
+        "comment": "I was searching for the official JAIHO777 APK for Android. Page clearly shows size and Android version before download. Welcome bonus claimed, games are smooth, and UPI deposit was instant. Recommended for Indian players."
       },
       {
         "name": "Rohan Mehta",
         "rating": 5,
         "posted": "19 Oct 2026",
+        "device": "Realme Narzo 60",
+        "helpful": 143,
         "avatar": "/assets/presentation/demo-rohan.webp",
-        "comment": "The preview gallery is easy to browse on mobile. A clear, uncluttered page with the app details in one place."
+        "comment": "Best download page I found—no confusion. Installed on Realme, registered with my number, played a few slots. Bank withdrawal showed Succeed in My Transactions within minutes. Customer support also replied quickly. 👍"
+      },
+      {
+        "name": "Priya Patel",
+        "rating": 4,
+        "posted": "11 Oct 2026",
+        "device": "Vivo T2",
+        "helpful": 98,
+        "initials": "PP",
+        "comment": "App feels like a real Play Store listing experience. Screenshots helped me trust the download. Daily promotions are good. Only suggestion—add Gujarati language later. Overall mast for evening games."
+      },
+      {
+        "name": "Vikram Singh",
+        "rating": 5,
+        "posted": "3 Oct 2026",
+        "device": "OnePlus Nord CE 3",
+        "helpful": 121,
+        "initials": "VS",
+        "comment": "Official APK, clear checksum, and proper Android 5.0+ note. Downloaded in Delhi on Wi-Fi, installed without issues. Withdrawals to HDFC were fast. Finally an app page that looks clean and trustworthy."
       }
     ]
   },

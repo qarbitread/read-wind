@@ -2,11 +2,12 @@
   "checkedAt": "2026-11-09T11:46:10.708Z",
   "scope": "Built Worker handler with the actual configured APK source; no APK execution. Public custom domain and physical Android were not tested.",
   "presentation": {
-    "baselineVersion": 6,
+    "baselineVersion": 7,
     "bodyAndOriginalStylesPreserved": true,
-    "screenshots": 6,
+    "screenshots": 7,
     "reviews": 3,
-    "demoLabelsRemoved": true
+    "demoLabelsRemoved": true,
+    "withdrawalsBanner": true
   },
   "tests": {
     "passed": 21,

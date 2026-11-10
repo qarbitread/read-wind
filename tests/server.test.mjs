@@ -137,7 +137,13 @@ test('SEO routes agree on a clean canonical and contain factual application data
   const worker = makeWorker();
   const html = await (await worker.fetch(request('/'))).text();
   assert.equal((html.match(/<h1\b/g) || []).length, 1);
-  assert.equal((html.match(/data-gallery=/g) || []).length, 6);
+  assert.equal((html.match(/data-gallery=/g) || []).length, 7);
+  assert.match(html, /Withdraw is usually processed in minutes/);
+  assert.match(html, /Fast withdrawals/);
+  assert.match(html, /JAIHO777 Games/);
+  assert.match(html, /18\.6K reviews/);
+  assert.match(html, /Priya Patel/);
+  assert.match(html, /people found this review helpful/);
   const schemas = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
   assert.equal(schemas[0].softwareVersion, actualRelease.version);
   assert.equal(schemas[0].downloadUrl, site.origin + '/download');

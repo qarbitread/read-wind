@@ -18,10 +18,12 @@ const check = (name, action) => { action(); checks.push(name); };
 check('one H1 and complete English Android listing', () => {
   assert.equal((index.match(/<h1\b/g) || []).length, 1);
   assert.match(index, /<html lang="en-IN">/);
-  assert.ok(index.includes('app.<br class="desktop-break"> Explore'), 'Preserve word spacing when the desktop line break is hidden on mobile');
-  assert.match(index, /<title>JAIHO777 – Official Android APK Download<\/title>/);
+  assert.ok(index.includes('bank.<br class="desktop-break"> Official'), 'Preserve word spacing when the desktop line break is hidden on mobile');
+  assert.match(index, /<title>JAIHO777 APK Download for Android – Official App India<\/title>/);
   assert.match(index, /name="description" content="[^\"]{90,180}"/);
   assert.match(index, /name="robots" content="index,follow/);
+  assert.match(index, /JAIHO777 Games/);
+  assert.match(index, /18\.6K reviews/);
 });
 check('canonical, Open Graph and sitemap share the configured HTTPS origin', () => {
   assert.match(index, new RegExp(`<link rel="canonical" href="${report.origin}/">`));
@@ -34,22 +36,28 @@ check('canonical, Open Graph and sitemap share the configured HTTPS origin', () 
   assert.equal(robots.includes('Disallow: /download'), true);
   assert.equal(robots.includes('Allow: /'), true);
 });
-check('six supplied screens, lazy thumbnails and factual structured data', () => {
-  assert.equal((index.match(/data-gallery=/g) || []).length, 6);
-  assert.ok((index.match(/loading="lazy"/g) || []).length >= 5);
+check('seven supplied screens, withdrawals banner, lazy thumbnails and factual structured data', () => {
+  assert.equal((index.match(/data-gallery=/g) || []).length, 7);
+  assert.ok((index.match(/loading="lazy"/g) || []).length >= 6);
   const schemas = JSON.parse(index.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
   assert.equal(schemas[0].softwareVersion, release.version);
   assert.equal(schemas[0].fileSize, `${release.sizeBytes} bytes`);
   assert.equal('aggregateRating' in schemas[0], false);
   const runtime = JSON.parse(index.match(/<script id="page-config" type="application\/json">([\s\S]*?)<\/script>/)[1]);
   assert.equal(runtime.analytics.enabled, false);
-  assert.equal(runtime.gallery.length, 6);
+  assert.equal(runtime.gallery.length, 7);
   assert.equal(runtime.gallery[0].title, 'Welcome to JAIHO777');
-  assert.equal(runtime.gallery[5].title, 'Discover promotions');
+  assert.equal(runtime.gallery[5].title, 'Promotions & VIP');
+  assert.equal(runtime.gallery[6].title, 'Fast withdrawals');
+  assert.equal(/Withdraw is usually processed in minutes/.test(index), true);
+  assert.equal(/Aarav Sharma/.test(index), true);
+  assert.equal(/Priya Patel/.test(index), true);
+  assert.equal(/Vikram Singh/.test(index), true);
+  assert.equal(/people found this review helpful/.test(index), true);
   assert.equal(/DEMO/.test(index), false);
   assert.equal(/Fictional/.test(index), false);
   assert.equal(/Verified App/.test(index), true);
-  assert.equal(/Ratings &amp; reviews/.test(index), true);
+  assert.equal(/Ratings and reviews/.test(index), true);
 });
 check('small browser payload and no third-party scripts or source maps', () => {
   assert.ok(report.html.gzipBytes < 15000);
