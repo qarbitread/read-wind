@@ -1,0 +1,122 @@
+{
+  "name": "JAIHO777",
+  "origin": "https://jaiho777-android-download.lydia-li-1377.chatgpt.site",
+  "language": "en-IN",
+  "locale": "en_IN",
+  "title": "JAIHO777 – Official Android APK Download",
+  "description": "Explore JAIHO777 for Android. View app information, installation instructions, and download the official APK directly.",
+  "about": "Explore JAIHO777, an Android gaming application featuring a variety of games, account features, and member activities. Discover the app experience and download the latest Android version directly from our official website.",
+  "publisher": null,
+  "publisherVerified": false,
+  "updatedAt": "2026-11-09",
+  "supportHandle": "@jaiho777",
+  "icon": "/assets/brand/app-icon.webp",
+  "iconSmall": "/assets/brand/app-icon-96.webp",
+  "iconLarge": "/assets/brand/app-icon-192.webp",
+  "appleIcon": "/assets/brand/app-icon-180.png",
+  "favicon": "/assets/brand/favicon.ico",
+  "faviconPng": "/assets/brand/app-icon-32.png",
+  "socialImage": "/assets/brand/social-preview.jpg",
+  "screenshots": [
+    {
+      "title": "Welcome to JAIHO777",
+      "caption": "Launch screen",
+      "src": "/assets/screenshots/01-launch.webp",
+      "thumbnailSrc": "/assets/screenshots/01-launch-thumb.webp",
+      "alt": "JAIHO777 launch screen with green slot-machine artwork and the app logo",
+      "width": 573,
+      "height": 1280
+    },
+    {
+      "title": "Access your account",
+      "caption": "Login screen",
+      "src": "/assets/screenshots/02-login.webp",
+      "thumbnailSrc": "/assets/screenshots/02-login-thumb.webp",
+      "alt": "JAIHO777 Android login screen with blank mobile-number and password fields",
+      "width": 573,
+      "height": 1280
+    },
+    {
+      "title": "Welcome bonus",
+      "caption": "New member screen",
+      "src": "/assets/screenshots/03-welcome.webp",
+      "thumbnailSrc": "/assets/screenshots/03-welcome-thumb.webp",
+      "alt": "JAIHO777 welcome-bonus popup as shown in the supplied application screenshot",
+      "width": 573,
+      "height": 1280
+    },
+    {
+      "title": "Explore the game lobby",
+      "caption": "Game lobby",
+      "src": "/assets/screenshots/04-lobby.webp",
+      "thumbnailSrc": "/assets/screenshots/04-lobby-thumb.webp",
+      "alt": "JAIHO777 game lobby with game tiles and the member feature menu",
+      "width": 573,
+      "height": 1280
+    },
+    {
+      "title": "First deposit offers",
+      "caption": "Deposit bonus screen",
+      "src": "/assets/screenshots/05-deposit.webp",
+      "thumbnailSrc": "/assets/screenshots/05-deposit-thumb.webp",
+      "alt": "JAIHO777 first-deposit bonus menu as shown in the supplied application screenshot",
+      "width": 573,
+      "height": 1280
+    },
+    {
+      "title": "Discover promotions",
+      "caption": "Promotions and rewards",
+      "src": "/assets/screenshots/06-promotions.webp",
+      "thumbnailSrc": "/assets/screenshots/06-promotions-thumb.webp",
+      "alt": "JAIHO777 promotions screen showing deposit bonus, VIP, member cards and referral banners",
+      "width": 573,
+      "height": 1280
+    }
+  ],
+  "analytics": {
+    "enabled": false
+  },
+  "attribution": {
+    "keys": [
+      "utm_source",
+      "utm_medium",
+      "utm_campaign",
+      "utm_content",
+      "utm_term",
+      "utm_id",
+      "campaign_id",
+      "source",
+      "ref"
+    ],
+    "maxValueLength": 100,
+    "ttlMinutes": 30
+  },
+  "demoPresentation": {
+    "enabled": true,
+    "reviews": [
+      {
+        "name": "Aarav Sharma",
+        "rating": 5,
+        "posted": "2 Nov 2026",
+        "avatar": "/assets/presentation/demo-aarav.webp",
+        "comment": "Clean layout, a clear download button and simple installation steps. Sab kuch easy to find."
+      },
+      {
+        "name": "Neha Iyer",
+        "rating": 5,
+        "posted": "28 Oct 2026",
+        "avatar": "/assets/presentation/demo-neha.webp",
+        "comment": "Simple and neatly arranged. The file size and Android requirements are easy to check before downloading."
+      },
+      {
+        "name": "Rohan Mehta",
+        "rating": 5,
+        "posted": "19 Oct 2026",
+        "avatar": "/assets/presentation/demo-rohan.webp",
+        "comment": "The preview gallery is easy to browse on mobile. A clear, uncluttered page with the app details in one place."
+      }
+    ]
+  },
+  "artwork": [],
+  "playStoreIcon": "/assets/presentation/play-store.webp"
+}

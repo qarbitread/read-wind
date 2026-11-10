@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /download
+Disallow: /api/
+
+Sitemap: https://jaiho777-android-download.lydia-li-1377.chatgpt.site/sitemap.xml
