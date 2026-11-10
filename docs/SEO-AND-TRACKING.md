@@ -2,8 +2,9 @@
 
 | Elemen | Implementasi |
 | --- | --- |
-| Judul | `JAIHO777 APK Download for Android – Official App India` |
-| Description | Official India-focused APK download copy (90–180 karakter) di `config/site.json` |
+| Judul | `JAIHO777 APK for Android – Download & Play in India` |
+| Description | Copy India-focused di `config/site.json` (origin: `https://realcashgame.app`) |
+| Favicon | Ikon Google Play (`favicon-play.ico`) |
 | Bahasa / locale | `en-IN` / `en_IN` |
 | Canonical | URL HTTPS bersih tanpa UTM, dari origin konfigurasi |
 | Open Graph | title, description, URL, site name, locale, JPEG 1200×630, tipe dan alt gambar |

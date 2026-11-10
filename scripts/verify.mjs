@@ -18,12 +18,16 @@ const check = (name, action) => { action(); checks.push(name); };
 check('one H1 and complete English Android listing', () => {
   assert.equal((index.match(/<h1\b/g) || []).length, 1);
   assert.match(index, /<html lang="en-IN">/);
-  assert.ok(index.includes('bank.<br class="desktop-break"> Official'), 'Preserve word spacing when the desktop line break is hidden on mobile');
-  assert.match(index, /<title>JAIHO777 APK Download for Android – Official App India<\/title>/);
+  assert.ok(index.includes('India.<br class="desktop-break"> Download'), 'Preserve word spacing when the desktop line break is hidden on mobile');
+  assert.match(index, /<title>JAIHO777 APK for Android – Download &amp; Play in India<\/title>/);
   assert.match(index, /name="description" content="[^\"]{90,180}"/);
   assert.match(index, /name="robots" content="index,follow/);
   assert.match(index, /JAIHO777 Games/);
   assert.match(index, /18\.6K reviews/);
+  assert.match(index, /Google Play/);
+  assert.match(index, /realcashgame\.app/);
+  assert.equal(/Works on Jio/.test(index), false);
+  assert.equal(/button-size/.test(index), false);
 });
 check('canonical, Open Graph and sitemap share the configured HTTPS origin', () => {
   assert.match(index, new RegExp(`<link rel="canonical" href="${report.origin}/">`));
@@ -49,7 +53,7 @@ check('seven supplied screens, withdrawals banner, lazy thumbnails and factual s
   assert.equal(runtime.gallery[0].title, 'Welcome to JAIHO777');
   assert.equal(runtime.gallery[5].title, 'Promotions & VIP');
   assert.equal(runtime.gallery[6].title, 'Fast withdrawals');
-  assert.equal(/Withdraw is usually processed in minutes/.test(index), true);
+  assert.equal(/promo-banner/.test(index), false);
   assert.equal(/Aarav Sharma/.test(index), true);
   assert.equal(/Priya Patel/.test(index), true);
   assert.equal(/Vikram Singh/.test(index), true);
@@ -58,6 +62,7 @@ check('seven supplied screens, withdrawals banner, lazy thumbnails and factual s
   assert.equal(/Fictional/.test(index), false);
   assert.equal(/Verified App/.test(index), true);
   assert.equal(/Ratings and reviews/.test(index), true);
+  assert.equal(/favourite money game/.test(index), true);
 });
 check('small browser payload and no third-party scripts or source maps', () => {
   assert.ok(report.html.gzipBytes < 15000);

@@ -1,21 +1,21 @@
 {
   "name": "JAIHO777",
-  "origin": "https://jaiho777-android-download.lydia-li-1377.chatgpt.site",
+  "origin": "https://realcashgame.app",
   "language": "en-IN",
   "locale": "en_IN",
-  "title": "JAIHO777 APK Download for Android – Official App India",
-  "description": "Download the official JAIHO777 APK for Android in India. Enjoy casino-style games, welcome bonuses, and fast bank withdrawals. Android 5.0+, 47.5 MB direct download.",
-  "about": "JAIHO777 is a popular Android gaming app for players in India. Enjoy slots, live-style games, welcome bonuses, daily promotions, and member rewards in one smooth app. Sign in with your mobile number, explore the game lobby, deposit securely, and withdraw winnings to your bank account—usually processed in minutes. Download the latest official APK from this page and install it on Android 5.0 or higher.",
+  "title": "JAIHO777 APK for Android – Download & Play in India",
+  "description": "Download JAIHO777 APK on Android. Play slots, arcade and fishing anytime. Link your mobile number, pay with UPI, and withdraw fast to your Indian bank.",
+  "about": "JAIHO777 is a favourite money game for many players in India. You can play anytime, anywhere on your Android phone—just download the app and start. After you link your mobile number, you can try the demo and enjoy slots, arcade, fishing and more. Pay with UPI and withdraw your winnings quickly to your Indian bank account.",
   "publisher": "JAIHO777 Games",
   "publisherVerified": true,
   "updatedAt": "2026-11-10",
-  "supportHandle": "@jaiho777",
+  "supportHandle": "support@realcashgame.app",
   "icon": "/assets/brand/app-icon.webp",
   "iconSmall": "/assets/brand/app-icon-96.webp",
   "iconLarge": "/assets/brand/app-icon-192.webp",
-  "appleIcon": "/assets/brand/app-icon-180.png",
-  "favicon": "/assets/brand/favicon.ico",
-  "faviconPng": "/assets/brand/app-icon-32.png",
+  "appleIcon": "/assets/brand/app-icon-play-180.png",
+  "favicon": "/assets/brand/favicon-play.ico",
+  "faviconPng": "/assets/brand/favicon-play-32.png",
   "socialImage": "/assets/brand/social-preview.jpg",
   "screenshots": [
     {
@@ -74,7 +74,7 @@
     },
     {
       "title": "Fast withdrawals",
-      "caption": "My Transactions",
+      "caption": "Bank payouts",
       "src": "/assets/screenshots/07-withdrawals.webp",
       "thumbnailSrc": "/assets/screenshots/07-withdrawals-thumb.webp",
       "alt": "JAIHO777 My Transactions withdrawals screen showing successful bank payouts in India",
@@ -83,15 +83,7 @@
     }
   ],
   "promoBanner": {
-    "enabled": true,
-    "eyebrow": "FAST WITHDRAWALS · INDIA",
-    "title": "Withdraw is usually processed in minutes",
-    "copy": "Check every bank payout in My Transactions. Successful withdrawals show clear status, amount and time—so you always know when your money is on the way.",
-    "cta": "View withdrawal screen",
-    "image": "/assets/screenshots/07-withdrawals.webp",
-    "alt": "JAIHO777 withdrawals banner showing successful Indian bank payouts",
-    "width": 572,
-    "height": 1280
+    "enabled": false
   },
   "analytics": {
     "enabled": false
@@ -124,7 +116,7 @@
         "device": "Samsung Galaxy M34",
         "helpful": 214,
         "avatar": "/assets/presentation/demo-aarav.webp",
-        "comment": "Downloaded from here on my Samsung. Install was easy, login with mobile number worked first try. Lobby loads fast even on Jio 4G. Withdrawal of ₹1,000 hit my SBI account in a few minutes. Bahut solid app hai."
+        "comment": "Downloaded on my Samsung. Login with mobile number was easy. Games run fine on Jio 4G. I withdrew ₹1,000 to SBI and it came in a few minutes. Good app."
       },
       {
         "name": "Neha Iyer",
@@ -133,7 +125,7 @@
         "device": "Redmi Note 13",
         "helpful": 176,
         "avatar": "/assets/presentation/demo-neha.webp",
-        "comment": "I was searching for the official JAIHO777 APK for Android. Page clearly shows size and Android version before download. Welcome bonus claimed, games are smooth, and UPI deposit was instant. Recommended for Indian players."
+        "comment": "Clear download page. Size and Android version are shown before install. UPI deposit was instant. Slots and fishing are fun. Useful for evening play."
       },
       {
         "name": "Rohan Mehta",
@@ -142,7 +134,7 @@
         "device": "Realme Narzo 60",
         "helpful": 143,
         "avatar": "/assets/presentation/demo-rohan.webp",
-        "comment": "Best download page I found—no confusion. Installed on Realme, registered with my number, played a few slots. Bank withdrawal showed Succeed in My Transactions within minutes. Customer support also replied quickly. 👍"
+        "comment": "Installed on Realme without issue. Linked my number, tried demo, then played slots. Bank withdrawal showed Succeed in My Transactions fast."
       },
       {
         "name": "Priya Patel",
@@ -151,7 +143,7 @@
         "device": "Vivo T2",
         "helpful": 98,
         "initials": "PP",
-        "comment": "App feels like a real Play Store listing experience. Screenshots helped me trust the download. Daily promotions are good. Only suggestion—add Gujarati language later. Overall mast for evening games."
+        "comment": "Simple to download and start. Daily offers are nice. Wish there was Gujarati language. Overall good for quick games on phone."
       },
       {
         "name": "Vikram Singh",
@@ -160,7 +152,7 @@
         "device": "OnePlus Nord CE 3",
         "helpful": 121,
         "initials": "VS",
-        "comment": "Official APK, clear checksum, and proper Android 5.0+ note. Downloaded in Delhi on Wi-Fi, installed without issues. Withdrawals to HDFC were fast. Finally an app page that looks clean and trustworthy."
+        "comment": "Official APK, clear file size, works on OnePlus. Withdrawal to HDFC was quick. Page looks clean and easy to trust."
       }
     ]
   },
