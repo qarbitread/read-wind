@@ -65,19 +65,18 @@ export function renderSmsPage(config) {
 </head>
 <body class="sms-body">
 <a class="sms-skip" href="#sms-main">Skip to content</a>
-<div class="sms-atmosphere" aria-hidden="true"></div>
 <main id="sms-main" class="sms-shell">
   <section class="sms-stage" aria-label="JAIHO777 SMS download">
     <h1 class="sms-sr">JAIHO777</h1>
     <div class="sms-topbar">
       ${action('REGISTER', 'sms-register', 'sms-btn-register')}
-      <a class="sms-logo" href="${downloadHref}" download="${e(a.filename)}" data-download data-placement="sms-logo" rel="noopener" aria-label="JAIHO777">
-        <img src="${e(logo)}" width="72" height="72" alt="JAIHO777" decoding="async" fetchpriority="high">
-      </a>
       ${action('PLAY NOW', 'sms-play', 'sms-btn-play')}
     </div>
     <figure class="sms-screen">
-      <img src="${e(withdraw.src)}" width="${withdraw.width}" height="${withdraw.height}" alt="${e(withdraw.alt)}" decoding="async" fetchpriority="high">
+      <a class="sms-logo" href="${downloadHref}" download="${e(a.filename)}" data-download data-placement="sms-logo" rel="noopener" aria-label="JAIHO777">
+        <img src="${e(logo)}" width="72" height="72" alt="JAIHO777" decoding="async" fetchpriority="high">
+      </a>
+      <img class="sms-screen-img" src="${e(withdraw.src)}" width="${withdraw.width}" height="${withdraw.height}" alt="${e(withdraw.alt)}" decoding="async" fetchpriority="high">
     </figure>
     <div class="sms-bottom">
       ${action('DOWNLOAD APK', 'sms-download', 'sms-btn-download')}
@@ -85,7 +84,6 @@ export function renderSmsPage(config) {
     </div>
   </section>
 </main>
-<p class="sms-legal"><a href="/">Play Store listing</a> · <a href="/privacy/">Privacy</a></p>
 <p id="download-status" class="sms-sr" role="status" aria-live="polite"></p>
 </body>
 </html>`;

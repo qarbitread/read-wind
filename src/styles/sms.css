@@ -1,11 +1,4 @@
 @font-face {
-  font-family: "Fraunces";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(/assets/fonts/fraunces-semibold.woff2) format("woff2");
-}
-@font-face {
   font-family: "Sora";
   font-style: normal;
   font-weight: 400;
@@ -29,12 +22,9 @@
 
 :root {
   --deep: #04160f;
-  --panel: #06251a;
   --ink: #f4fff8;
   --register: #19d46a;
-  --register-deep: #0b9a48;
   --play: #2f7bff;
-  --play-deep: #1653d6;
   --download: #ff2d3b;
   --download-deep: #c8101d;
   --logo: #ffd54a;
@@ -46,109 +36,46 @@ html.sms-root, .sms-body {
   margin: 0;
   min-height: 100%;
   color: var(--ink);
-  background: var(--deep);
+  background: #000;
   font-family: "Sora", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 .sms-body {
   min-height: 100svh;
-  display: grid;
-  place-items: center;
-  padding: 1rem 0.85rem 1.25rem;
   position: relative;
   overflow-x: hidden;
-}
-.sms-atmosphere {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(80% 60% at 50% 0%, rgba(25, 212, 106, 0.18), transparent 55%),
-    radial-gradient(70% 50% at 100% 100%, rgba(47, 123, 255, 0.16), transparent 50%),
-    radial-gradient(60% 45% at 0% 100%, rgba(255, 45, 59, 0.12), transparent 45%),
-    linear-gradient(180deg, #07281c 0%, #04160f 100%);
 }
 .sms-skip {
   position: absolute;
   left: -999px;
   top: 0;
-  z-index: 20;
+  z-index: 40;
   background: #fff;
   color: #000;
   padding: 0.55rem 0.8rem;
 }
 .sms-skip:focus { left: 0.8rem; top: 0.8rem; }
 
-.sms-shell,
-.sms-legal {
-  position: relative;
-  z-index: 1;
-  width: min(100%, 420px);
+.sms-shell {
+  width: min(100%, 480px);
+  margin: 0 auto;
+  min-height: 100svh;
+  background: #05261c;
 }
+
 .sms-stage {
-  display: grid;
-  gap: 0.85rem;
-  padding: 0.85rem;
-  border-radius: 1.4rem;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
-    var(--panel);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
-  animation: sms-rise 0.7s ease both;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
 }
+
+/* Full-width twin buttons at top */
 .sms-topbar {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 0.55rem;
-}
-.sms-logo {
-  width: 4.1rem;
-  height: 4.1rem;
-  border-radius: 1rem;
-  display: grid;
-  place-items: center;
-  text-decoration: none;
-  background: linear-gradient(180deg, #ffe57a 0%, var(--logo) 48%, var(--logo-deep) 100%);
-  box-shadow:
-    0 10px 24px rgba(240, 180, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.55);
-  animation: sms-logo-pulse 2.8s ease-in-out infinite;
-}
-.sms-logo img {
-  width: 3.15rem;
-  height: 3.15rem;
-  border-radius: 0.75rem;
-  display: block;
-}
-.sms-screen {
-  margin: 0;
-  border-radius: 1.05rem;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: #000;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
-  max-height: min(52svh, 26rem);
-}
-.sms-screen img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  max-height: min(52svh, 26rem);
-  object-fit: cover;
-  object-position: top center;
-}
-.sms-bottom {
-  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 0.45rem;
-}
-.sms-meta {
-  margin: 0;
-  text-align: center;
-  font-size: 0.74rem;
-  color: rgba(244, 255, 248, 0.65);
+  padding: 0.55rem 0.55rem 0.4rem;
+  background: #0a1f16;
 }
 
 .sms-btn {
@@ -159,14 +86,12 @@ html.sms-root, .sms-body {
   align-items: center;
   justify-content: center;
   min-height: 3rem;
-  padding: 0.7rem 0.85rem;
-  border-radius: 0.85rem;
+  padding: 0.7rem 0.5rem;
+  border-radius: 0.55rem;
   text-decoration: none;
   font-weight: 800;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: #fff;
-  transform: translateZ(0);
   transition: transform 160ms ease, filter 160ms ease, box-shadow 160ms ease;
 }
 .sms-btn-label { position: relative; z-index: 2; }
@@ -174,51 +99,94 @@ html.sms-root, .sms-body {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(115deg, transparent 25%, rgba(255, 255, 255, 0.45) 48%, transparent 70%);
+  background: linear-gradient(115deg, transparent 25%, rgba(255, 255, 255, 0.4) 48%, transparent 70%);
   transform: translateX(-120%);
   animation: sms-shine 2.6s ease-in-out infinite;
 }
-.sms-btn:hover { transform: translateY(-2px) scale(1.015); filter: brightness(1.05); }
-.sms-btn:active { transform: translateY(0) scale(0.99); }
+.sms-btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
+.sms-btn:active { transform: scale(0.99); }
 
+/* Outline style like the sketch */
 .sms-btn-register {
-  justify-self: start;
-  min-width: 7.2rem;
-  color: #04160f;
-  background: linear-gradient(180deg, #5dff9d 0%, var(--register) 45%, var(--register-deep) 100%);
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.25) inset,
-    0 10px 28px rgba(25, 212, 106, 0.45);
+  width: 100%;
+  color: var(--register);
+  background: #101814;
+  border: 2.5px solid var(--register);
+  box-shadow: 0 0 16px rgba(25, 212, 106, 0.35), inset 0 0 12px rgba(25, 212, 106, 0.12);
   animation: sms-glow-green 2.4s ease-in-out infinite;
 }
 .sms-btn-play {
-  justify-self: end;
-  min-width: 7.2rem;
-  background: linear-gradient(180deg, #79a8ff 0%, var(--play) 45%, var(--play-deep) 100%);
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.22) inset,
-    0 10px 28px rgba(47, 123, 255, 0.45);
+  width: 100%;
+  color: var(--play);
+  background: #101814;
+  border: 2.5px solid var(--play);
+  box-shadow: 0 0 16px rgba(47, 123, 255, 0.35), inset 0 0 12px rgba(47, 123, 255, 0.12);
   animation: sms-glow-blue 2.4s ease-in-out infinite;
-  animation-delay: 0.35s;
+  animation-delay: 0.3s;
 }
 .sms-btn-download {
   width: 100%;
-  min-height: 3.55rem;
+  min-height: 3.4rem;
   font-size: 1.05rem;
+  color: #fff;
+  border: 0;
   background: linear-gradient(180deg, #ff6b75 0%, var(--download) 42%, var(--download-deep) 100%);
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.22) inset,
-    0 14px 36px rgba(255, 45, 59, 0.5);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2) inset, 0 12px 30px rgba(255, 45, 59, 0.5);
   animation: sms-glow-red 2.2s ease-in-out infinite;
 }
 
-.sms-legal {
-  margin: 0.85rem auto 0;
-  text-align: center;
-  font-size: 0.72rem;
-  color: rgba(244, 255, 248, 0.55);
+/* Full phone screenshot, logo sitting above My Transactions */
+.sms-screen {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  background: #041910;
 }
-.sms-legal a { color: #ffd54a; }
+.sms-screen-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.sms-logo {
+  position: absolute;
+  top: 0.55%;
+  left: 50%;
+  z-index: 5;
+  width: 3.35rem;
+  height: 3.35rem;
+  border-radius: 0.7rem;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #ffe57a 0%, var(--logo) 48%, var(--logo-deep) 100%);
+  box-shadow: 0 8px 18px rgba(240, 180, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  animation: sms-logo-pulse 2.8s ease-in-out infinite;
+}
+.sms-logo img {
+  width: 2.55rem;
+  height: 2.55rem;
+  border-radius: 0.55rem;
+  display: block;
+}
+
+.sms-bottom {
+  position: sticky;
+  bottom: 0;
+  z-index: 20;
+  margin-top: auto;
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.55rem 0.65rem calc(0.7rem + env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, transparent, rgba(4, 22, 15, 0.94) 30%, #04160f 100%);
+}
+.sms-meta {
+  margin: 0;
+  text-align: center;
+  font-size: 0.7rem;
+  color: rgba(244, 255, 248, 0.62);
+}
+
 .sms-sr {
   position: absolute;
   width: 1px;
@@ -231,39 +199,44 @@ html.sms-root, .sms-body {
   border: 0;
 }
 
-@keyframes sms-rise {
-  from { opacity: 0; transform: translateY(16px) scale(0.985); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
 @keyframes sms-shine {
   0%, 55% { transform: translateX(-130%); }
   80%, 100% { transform: translateX(130%); }
 }
 @keyframes sms-logo-pulse {
-  0%, 100% { transform: scale(1); box-shadow: 0 10px 24px rgba(240, 180, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.55); }
-  50% { transform: scale(1.04); box-shadow: 0 14px 30px rgba(240, 180, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.65); }
+  0%, 100% { transform: translateX(-50%) scale(1); }
+  50% { transform: translateX(-50%) scale(1.05); }
 }
 @keyframes sms-glow-green {
-  0%, 100% { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25) inset, 0 10px 28px rgba(25, 212, 106, 0.4); }
-  50% { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35) inset, 0 12px 34px rgba(25, 212, 106, 0.7); }
+  0%, 100% { box-shadow: 0 0 12px rgba(25, 212, 106, 0.28), inset 0 0 10px rgba(25, 212, 106, 0.1); }
+  50% { box-shadow: 0 0 22px rgba(25, 212, 106, 0.55), inset 0 0 14px rgba(25, 212, 106, 0.18); }
 }
 @keyframes sms-glow-blue {
-  0%, 100% { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.22) inset, 0 10px 28px rgba(47, 123, 255, 0.4); }
-  50% { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.32) inset, 0 12px 34px rgba(47, 123, 255, 0.7); }
+  0%, 100% { box-shadow: 0 0 12px rgba(47, 123, 255, 0.28), inset 0 0 10px rgba(47, 123, 255, 0.1); }
+  50% { box-shadow: 0 0 22px rgba(47, 123, 255, 0.55), inset 0 0 14px rgba(47, 123, 255, 0.18); }
 }
 @keyframes sms-glow-red {
-  0%, 100% { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.22) inset, 0 14px 36px rgba(255, 45, 59, 0.45); }
-  50% { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3) inset, 0 16px 42px rgba(255, 45, 59, 0.75); }
+  0%, 100% { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2) inset, 0 12px 28px rgba(255, 45, 59, 0.42); }
+  50% { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.28) inset, 0 14px 34px rgba(255, 45, 59, 0.72); }
 }
 
 @media (min-width: 760px) {
-  .sms-shell { width: min(100%, 430px); }
-  .sms-stage { padding: 1rem; }
+  .sms-body {
+    display: grid;
+    place-items: center;
+    background: #020c08;
+    padding: 1rem 0;
+  }
+  .sms-shell {
+    min-height: min(100svh, 920px);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
+  }
+  .sms-stage { min-height: min(100svh, 920px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sms-stage,
-  .sms-btn,
   .sms-btn-shine,
   .sms-logo,
   .sms-btn-register,
@@ -271,4 +244,5 @@ html.sms-root, .sms-body {
   .sms-btn-download {
     animation: none !important;
   }
+  .sms-logo { transform: translateX(-50%); }
 }
