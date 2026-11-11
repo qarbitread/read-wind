@@ -32,11 +32,11 @@ export function renderPage(config) {
   const e = escapeHtml, a = config.apk, fileSize = sizeLabel(a.sizeBytes);
   const hasScreenshots = config.screenshots.length > 0;
   const gallery = hasScreenshots ? config.screenshots : config.artwork;
-  const downloadHref = '/download';
+  const downloadHref = e(a.url);
   const download = (location, extra = '') => `<a class="download-button ${extra}" href="${downloadHref}" download="${e(a.filename)}" data-download data-placement="${location}" rel="noopener">${icon('download')}<span>Install</span></a>`;
   const publicConfig = {
     analytics: config.analytics, attribution: config.attribution,
-    downloadUrl: '/download',
+    downloadUrl: a.url,
     gallery: gallery.map((item, i) => ({title:item.title,html:galleryImage(item, i, true)}))
   };
   const json = JSON.stringify(publicConfig).replace(/</g, '\\u003c');

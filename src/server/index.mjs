@@ -67,10 +67,10 @@ export function createWorker({ site, release, assets, pages, fetchImpl = (...arg
         return response(null, 301, { Location: url.href, 'Cache-Control': 'public, max-age=3600' });
       }
       const withApkAttribution = (html) => {
+        // Keep Install/Download hrefs on the clean CloudFront APK URL (no query).
+        // Campaign labels are recorded via /api/events and optional /download, not on the APK URL.
         const labels = new URLSearchParams(collectAttribution(url.searchParams, site.attribution)).toString();
-        const apkHref = 'href="/download"';
-        const page = labels ? html.replaceAll(apkHref, `href="/download?${htmlEscape(labels)}"`) : html;
-        return { page, labels };
+        return { page: html, labels };
       };
       if (path === '/') {
         const { page, labels } = withApkAttribution(pages.index);

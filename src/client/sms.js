@@ -30,13 +30,16 @@
   // Default SMS blast attribution when the page itself is the channel landing.
   if (!attribution.utm_source) attribution = { ...attribution, utm_source: 'sms', utm_medium: attribution.utm_medium || 'sms' };
 
+  const apkUrl = String(config.downloadUrl || '').split('?')[0];
   for (const link of document.querySelectorAll('[data-download]')) {
-    const target = new URL(config.downloadUrl || link.getAttribute('href'), document.baseURI);
-    for (const [key, value] of Object.entries(attribution)) target.searchParams.set(key, value);
-    link.href = target.href;
-    link.addEventListener('click', () => {
+    // Direct CloudFront APK only — no query string — so tap starts the file download immediately.
+    link.href = apkUrl || link.getAttribute('href');
+    link.setAttribute('download', link.getAttribute('download') || 'JAIHO777-1.1.1.apk');
+    link.addEventListener('click', event => {
+      event.preventDefault();
       const status = document.getElementById('download-status');
-      if (status) status.textContent = 'APK download requested. Check your browser’s Downloads for progress.';
+      if (status) status.textContent = 'APK download started.';
+      window.location.assign(link.href);
     });
   }
 

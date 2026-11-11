@@ -102,13 +102,14 @@ test('upstream unsatisfiable ranges become a bounded 416 response', async () => 
   assert.equal(result.headers.get('Content-Range'), 'bytes */4');
 });
 
-test('campaign attribution reaches both download links without needing JavaScript', async () => {
+test('campaign attribution reaches download links as clean CloudFront APK URLs', async () => {
   const result = await makeWorker().fetch(request('/?utm_source=whatsapp&utm_campaign=launch-a&phone=919876543210&url=https://other.example'));
   const html = await result.text();
-  assert.equal((html.match(/href="\/download\?utm_source=whatsapp&amp;utm_campaign=launch-a"/g) || []).length, 2);
-  assert.equal(html.includes(actualRelease.url + '?'), false);
+  assert.equal((html.match(new RegExp(`href="${actualRelease.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g')) || []).length, 2);
+  assert.equal(html.includes(`${actualRelease.url}?`), false);
   assert.match(html, new RegExp(`<link rel="canonical" href="${site.origin}/">`));
   assert.equal(html.includes('919876543210'), false);
+  assert.equal(html.includes('other.example'), false);
   assert.equal(result.headers.get('Cache-Control'), 'private, no-store');
   assert.equal(result.headers.has('Set-Cookie'), false);
 });
@@ -180,8 +181,8 @@ test('SEO routes agree on a clean canonical and contain factual application data
   assert.match(smsHtml, /REGISTER/);
   assert.match(smsHtml, /PLAY NOW/);
   assert.match(smsHtml, /DOWNLOAD APK/);
-  assert.equal((smsHtml.match(/href="\/download\?utm_source=sms&amp;utm_campaign=blast-a"/g) || []).length >= 4, true);
-  assert.equal(smsHtml.includes(actualRelease.url + '?'), false);
+  assert.equal((smsHtml.match(new RegExp(`href="${actualRelease.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g')) || []).length >= 4, true);
+  assert.equal(smsHtml.includes(`${actualRelease.url}?`), false);
   assert.equal((await worker.fetch(request('/sms'))).status, 301);
 });
 

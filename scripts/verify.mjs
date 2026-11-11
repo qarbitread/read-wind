@@ -51,8 +51,7 @@ check('SMS landing uses withdrawal screen with Register, Play Now and Download A
   assert.match(sms, /sms-btn-download/);
   assert.match(sms, /sms-logos/);
   assert.equal((sms.match(/class="sms-logo"/g) || []).length, 2);
-  assert.equal((sms.match(/href="\/download"/g) || []).length >= 4, true);
-  assert.match(sms, /"downloadUrl":"\/download"/);
+  assert.equal((sms.match(new RegExp(`href="${release.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g')) || []).length >= 4, true);
   assert.match(sms, new RegExp(`<link rel="canonical" href="${report.origin}/sms/">`));
   assert.equal(sms.includes('Google Play</span>'), false);
 });
@@ -111,9 +110,9 @@ for (const file of allFiles.filter(file => /\.(html|js|css|xml|txt)$/.test(file)
   assert.equal(text.includes('{{'), false, file);
 }
 const indexHtml = await readFile(path.join(dist, 'public', 'index.html'), 'utf8');
-assert.equal((indexHtml.match(/href="\/download"/g) || []).length >= 2, true, 'Install buttons must point at /download');
-assert.match(indexHtml, /id="page-config"[^>]*>\{"analytics":\{"enabled":false\},"attribution":\{[^}]+\}[^}]*"downloadUrl":"\/download"/);
-checks.push('Install buttons use same-origin /download with no unresolved placeholders');
+assert.equal(indexHtml.includes(`href="${release.url}"`), true, 'Install buttons must point at the release APK URL');
+assert.equal((indexHtml.match(new RegExp(`href="${release.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g')) || []).length >= 2, true);
+checks.push('Install buttons use the direct release APK URL with no unresolved placeholders');
 for (const url of Object.values(report.assetManifest)) await stat(path.join(dist, 'public', url));
 checks.push('every hashed browser asset exists');
 
