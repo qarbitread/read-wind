@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<title>JAIHO777 Batch 05 Preview</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#111;color:#eee}
+nav{position:sticky;top:0;z-index:9;display:flex;flex-wrap:wrap;gap:8px;padding:10px;background:#000}
+nav a{color:#111;background:#b8ff3c;padding:8px 10px;text-decoration:none;font-size:12px;font-weight:700}
+section{border-bottom:8px solid #000;padding:0 0 24px}
+h2.label{margin:0;padding:14px 16px;background:#222;color:#b8ff3c;font-size:14px;letter-spacing:1px}
+</style>
+</head>
+<body>
+<nav>
+<a href='#a1'>1 Leaderboard</a>
+<a href='#a2'>2 Bonus Ends</a>
+<a href='#a3'>3 Celebrate</a>
+<a href='#a4'>4 Mega Festival</a>
+<a href='#a5'>5 Govardhan</a>
+</nav>
+<section id='a1'><h2 class='label'>ARTIKEL 1 — Sports Broadcast Scoreboard</h2><div id='c1'></div></section>
+<section id='a2'><h2 class='label'>ARTIKEL 2 — Festival Urgency Editorial</h2><div id='c2'></div></section>
+<section id='a3'><h2 class='label'>ARTIKEL 3 — Lifestyle Celebration Campaign</h2><div id='c3'></div></section>
+<section id='a4'><h2 class='label'>ARTIKEL 4 — Cinematic Event Poster</h2><div id='c4'></div></section>
+<section id='a5'><h2 class='label'>ARTIKEL 5 — Tradition Grove Microsite</h2><div id='c5'></div></section>
+<script>
+async function load(id,file){
+ const r=await fetch(file);
+ const t=await r.text();
+ document.getElementById(id).innerHTML=t;
+}
+load('c1','01-leaderboard-big-rewards.html');
+load('c2','02-diwali-bonus-ends-today.html');
+load('c3','03-celebrate-diwali.html');
+load('c4','04-diwali-mega-bonus-festival.html');
+load('c5','05-govardhan-puja.html');
+</script>
+</body>
+</html>
