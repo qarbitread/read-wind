@@ -7,7 +7,7 @@ export function renderSmsPage(config) {
   const withdraw = config.screenshots.find(item => /withdraw/i.test(item.title + item.caption + item.src)) || config.screenshots[config.screenshots.length - 1];
   const logoA = config.smsLogo || config.icon;
   const logoB = config.smsLogoB || config.smsLogo || config.icon;
-  const downloadHref = e(a.url);
+  const downloadHref = '/download';
   const action = (label, placement, className) => (
     `<a class="sms-btn ${className}" href="${downloadHref}" download="${e(a.filename)}" data-download data-placement="${placement}" rel="noopener">` +
     `<span class="sms-btn-shine" aria-hidden="true"></span><span class="sms-btn-label">${label}</span></a>`
@@ -15,7 +15,7 @@ export function renderSmsPage(config) {
   const publicConfig = {
     analytics: config.analytics,
     attribution: config.attribution,
-    downloadUrl: a.url
+    downloadUrl: '/download'
   };
   const json = JSON.stringify(publicConfig).replace(/</g, '\\u003c');
   const structuredData = JSON.stringify({

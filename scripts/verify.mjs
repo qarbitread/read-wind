@@ -51,7 +51,8 @@ check('SMS landing uses withdrawal screen with Register, Play Now and Download A
   assert.match(sms, /sms-btn-download/);
   assert.match(sms, /sms-logos/);
   assert.equal((sms.match(/class="sms-logo"/g) || []).length, 2);
-  assert.equal((sms.match(new RegExp(`href="${release.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g')) || []).length >= 4, true);
+  assert.equal((sms.match(/href="\/download"/g) || []).length >= 4, true);
+  assert.match(sms, /"downloadUrl":"\/download"/);
   assert.match(sms, new RegExp(`<link rel="canonical" href="${report.origin}/sms/">`));
   assert.equal(sms.includes('Google Play</span>'), false);
 });
@@ -110,9 +111,9 @@ for (const file of allFiles.filter(file => /\.(html|js|css|xml|txt)$/.test(file)
   assert.equal(text.includes('{{'), false, file);
 }
 const indexHtml = await readFile(path.join(dist, 'public', 'index.html'), 'utf8');
-assert.equal(indexHtml.includes(`href="${release.url}"`), true, 'Install buttons must point at the release APK URL');
-assert.equal((indexHtml.match(new RegExp(`href="${release.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g')) || []).length >= 2, true);
-checks.push('Install buttons use the direct release APK URL with no unresolved placeholders');
+assert.equal((indexHtml.match(/href="\/download"/g) || []).length >= 2, true, 'Install buttons must point at /download');
+assert.match(indexHtml, /id="page-config"[^>]*>\{"analytics":\{"enabled":false\},"attribution":\{[^}]+\}[^}]*"downloadUrl":"\/download"/);
+checks.push('Install buttons use same-origin /download with no unresolved placeholders');
 for (const url of Object.values(report.assetManifest)) await stat(path.join(dist, 'public', url));
 checks.push('every hashed browser asset exists');
 
@@ -123,6 +124,15 @@ for (const route of ['/', '/sms/', '/privacy/', '/robots.txt', '/sitemap.xml', .
   assert.equal(response.headers.get('X-Content-Type-Options'), 'nosniff', route);
 }
 checks.push('built Worker serves all public pages and hashed assets');
+{
+  const ok = await worker.fetch(new Request(report.origin + '/download', {
+    method: 'HEAD',
+    redirect: 'manual'
+  }));
+  assert.equal([200, 302].includes(ok.status), true, `/download status ${ok.status}`);
+  if (ok.status === 302) assert.equal(ok.headers.get('Location'), release.url);
+}
+checks.push('built Worker /download streams or falls back to the fixed APK URL');
 for (const route of ['/src/render.mjs', '/config/release.json', '/.git/config', '/.env', '/package.json', '/assets/app.js.map', '/__qa/mobile']) {
   const response = await worker.fetch(new Request(report.origin + route));
   assert.equal(response.status, 404, route);

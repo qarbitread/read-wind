@@ -46,9 +46,16 @@ export function createWorker({ site, release, assets, pages, fetchImpl = (...arg
       if (path === '/download') {
         const file = await streamApk(request, release, fetchImpl);
         if (file.error === 416) return response(null, 416, { ...file.headers, 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' });
-        if (file.error) return htmlResponse(request, pages.downloadError, 503, {
-          'Cache-Control': 'no-store', 'Retry-After': '60', 'X-Robots-Tag': 'noindex'
-        });
+        if (file.error) {
+          // Upstream proxy can fail at the edge; fall back to the fixed HTTPS APK URL
+          // so Install/Download buttons still deliver the file (labels stay on /download only).
+          return response(null, 302, {
+            Location: release.url,
+            'Cache-Control': 'no-store',
+            'X-Robots-Tag': 'noindex',
+            'Retry-After': '60'
+          });
+        }
         if (request.method === 'GET') {
           recordEvent(request, env, site, 'download_request', collectAttribution(url.searchParams, site.attribution));
         }
@@ -61,8 +68,8 @@ export function createWorker({ site, release, assets, pages, fetchImpl = (...arg
       }
       const withApkAttribution = (html) => {
         const labels = new URLSearchParams(collectAttribution(url.searchParams, site.attribution)).toString();
-        const apkHref = `href="${htmlEscape(release.url)}"`;
-        const page = labels ? html.replaceAll(apkHref, `href="${htmlEscape(release.url)}?${htmlEscape(labels)}"`) : html;
+        const apkHref = 'href="/download"';
+        const page = labels ? html.replaceAll(apkHref, `href="/download?${htmlEscape(labels)}"`) : html;
         return { page, labels };
       };
       if (path === '/') {

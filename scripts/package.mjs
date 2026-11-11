@@ -163,6 +163,18 @@ for (const entry of await readdir(path.join(readable, 'assets/css'))) {
   }
 }
 
+// Static HTML preview has no Worker /download endpoint — point buttons at the fixed APK URL.
+const release = JSON.parse(await readFile(path.join(root, 'config/release.json'), 'utf8'));
+async function useDirectApk(file) {
+  let text = await readFile(file, 'utf8');
+  text = text
+    .replaceAll('href="/download"', `href="${release.url}"`)
+    .replaceAll('"downloadUrl":"/download"', `"downloadUrl":"${release.url}"`);
+  await writeFile(file, text);
+}
+await useDirectApk(path.join(readable, 'index.html'));
+await useDirectApk(path.join(readable, 'sms/index.html'));
+
 // Also ship a ready-to-open preview zip with relative paths for local file viewing.
 const previewFiles = await collect(readable, '03-html-preview');
 previewFiles.push({
@@ -172,7 +184,8 @@ previewFiles.push({
     'Jika masih rusak, jalankan di folder 03-html-preview:\n' +
     '  python -m http.server 8080\n' +
     'lalu buka http://localhost:8080/\n' +
-    'Tombol Install langsung ke APK CloudFront.\n' +
+    'Tombol Install/Download mengarah ke APK CloudFront (preview statis).\n' +
+    'Setelah deploy Worker, site live memakai /download (dengan fallback ke CloudFront).\n' +
     'Halaman SMS (tema UPI/withdrawal): buka sms/index.html\n' +
     'Link blast SMS: https://realcashgame.app/sms/?utm_source=sms&utm_medium=sms&utm_campaign=NAMA\n',
     'utf8'

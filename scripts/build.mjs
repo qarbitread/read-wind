@@ -82,8 +82,8 @@ for(const key of ['index','sms','privacy','notFound','downloadError']){
   pages[key]=await minify(rendered[key],{collapseWhitespace:true,conservativeCollapse:true,removeComments:true,removeAttributeQuotes:false,collapseBooleanAttributes:true,minifyCSS:false,minifyJS:false});
   if(pages[key].includes('{{'))throw new Error(`Unresolved template data in ${key}`);
 }
-if(!pages.index.includes(`href="${release.url}"`))throw new Error('Install buttons must use the direct release APK URL');
-if(!pages.sms.includes(`href="${release.url}"`))throw new Error('SMS Install button must use the direct release APK URL');
+if(!pages.index.includes('href="/download"')||!pages.index.includes('"downloadUrl":"/download"'))throw new Error('Install buttons must use same-origin /download');
+if(!pages.sms.includes('href="/download"')||!pages.sms.includes('"downloadUrl":"/download"'))throw new Error('SMS buttons must use same-origin /download');
 const publicPages={'index.html':pages.index,'sms/index.html':pages.sms,'privacy/index.html':pages.privacy,'404.html':pages.notFound,'robots.txt':pages.robots,'sitemap.xml':pages.sitemap};
 for(const [relative,body]of Object.entries(publicPages))await writeFile(path.join(output,'public',relative),body);
 await writeFile(path.join(output,'readable/index.html'),readableHtml(rendered.index));
