@@ -8,7 +8,7 @@
   "about": "JAIHO777 is a favourite money game for many players in India. You can play anytime, anywhere on your Android phone—just download the app and start. After you link your mobile number, you can try the demo and enjoy slots, arcade, fishing and more. Pay with UPI and withdraw your winnings quickly to your Indian bank account.",
   "publisher": "JAIHO777 Games",
   "publisherVerified": true,
-  "updatedAt": "2026-11-10",
+  "updatedAt": "2026-11-11",
   "supportHandle": "support@realcashgame.app",
   "icon": "/assets/brand/app-icon.webp",
   "iconSmall": "/assets/brand/app-icon-96.webp",
@@ -79,7 +79,7 @@
       "thumbnailSrc": "/assets/screenshots/07-withdrawals-thumb.webp",
       "alt": "JAIHO777 My Transactions withdrawals screen showing successful bank payouts in India",
       "width": 572,
-      "height": 1280
+      "height": 1060
     }
   ],
   "promoBanner": {

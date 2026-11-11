@@ -83,5 +83,7 @@ npm run build -- --origin=https://realcashgame.app
 
 - Favicon = ikon Google Play
 - Ikon app di listing tetap logo JAIHO777
-- Tombol Install mengunduh APK lewat Worker (bukan file statis)
-- Preview HTML lokal tidak punya endpoint `/download`
+- Tombol Install mengarah langsung ke APK CloudFront
+- Halaman WhatsApp / Play listing: `https://realcashgame.app/`
+- Halaman SMS (tema UPI / bank withdrawal): `https://realcashgame.app/sms/`
+- Contoh link blast SMS: `https://realcashgame.app/sms/?utm_source=sms&utm_medium=sms&utm_campaign=nama-kampanye`

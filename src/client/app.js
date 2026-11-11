@@ -21,12 +21,15 @@
     if (privateMode) sessionStorage.removeItem('jaiho777-campaign');
     else if (Object.keys(current).length) sessionStorage.setItem('jaiho777-campaign', JSON.stringify({values:current,expires:Date.now() + config.attribution.ttlMinutes * 60000}));
   } catch { /* Downloads work even when browser storage is disabled. */ }
+  const apkUrl = String(config.downloadUrl || '').split('?')[0];
   for (const link of document.querySelectorAll('[data-download]')) {
-    const target = new URL(config.downloadUrl || link.getAttribute('href'), document.baseURI);
-    for (const [key,value] of Object.entries(attribution)) target.searchParams.set(key,value);
-    link.href = target.href;
-    link.addEventListener('click', () => {
-      document.getElementById('download-status').textContent = 'APK download requested. Check your browser’s Downloads for progress.';
+    // Direct CloudFront APK only — no query string — so tap starts the file download immediately.
+    link.href = apkUrl || link.getAttribute('href');
+    link.setAttribute('download', link.getAttribute('download') || 'JAIHO777-1.1.1.apk');
+    link.addEventListener('click', event => {
+      event.preventDefault();
+      document.getElementById('download-status').textContent = 'APK download started.';
+      window.location.assign(link.href);
     });
   }
   if (config.analytics.enabled && !privateMode) {
