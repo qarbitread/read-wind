@@ -515,6 +515,7 @@ def p4():
 <p style='margin:0 0 14px'>Mute group chats that mock small withdrawals. Mute friends who demand you double it. Keep a personal ledger. Congrats energy for the featured UID is fair. Copy-paste expectation is not. The Rising Mepusr super win story is a reminder that earning-game moments can go nuclear — and a warning that variance cuts both ways. Loyal JAIHO777 players win the long season by protecting process.</p>
 <p style='margin:0 0 14px'>If you feel inspired, translate inspiration into a tiny controlled experiment: official build, smallest comfortable stake, hard timer, no alcohol, no revenge clicks after a near miss. If the session stays fun, great. If it starts feeling like homework for a screenshot, stop. Highlight reels are content. Your UPI balance is reality.</p>
 <p style='margin:0 0 14px'>Support still matters after a big night. Keep calm screenshots ready. Celebrate privately before you broadcast. And remember: a masked UID flex is marketing atmosphere. It is not a homework assignment for your next deposit.</p>
+<p style='margin:0 0 14px'>If friends forward the ₹156,500 banner into your chat, reply with the lesson not the dare: bankroll first, official APK only, stop rules always. That reply protects the group better than another fire emoji. Showcase coverage should reduce confusion, not multiply reckless clones of someone else’s highlight reel.</p>
 <p style='margin:0 0 18px;text-align:center'>{cta(apk,'OPEN JAIHO777','#1b7a4e','#ffffff','#0f3d27')}</p>
 </section>
 <section id='faq-rise'>

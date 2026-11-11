@@ -1,15 +1,11 @@
-# Publish Pack — Siap Copy Paste
+# Publish Pack
 
-## Adminsafebet (situs baru)
-- Semua 5 artikel 1 file: `adminsafebet/COPY-PASTE-SEMUA-ARTIKEL.txt`
-- Per artikel: `adminsafebet/per-artikel/`
-- APK: `jaiho777_119CBDGML2F.apk`
+## Adminsafebet
+- `adminsafebet/COPY-PASTE-SEMUA-ARTIKEL.txt`
+- `adminsafebet/per-artikel/artikel-01.txt` ... `artikel-05.txt`
 
-## Prosafebet (situs lama)
-- Semua 5 artikel 1 file: `prosafebet/COPY-PASTE-SEMUA-ARTIKEL.txt`
-- Per artikel: `prosafebet/per-artikel/`
-- APK: `jaiho777a_J6NJ4881PJ3.apk`
+## Prosafebet
+- `prosafebet/COPY-PASTE-SEMUA-ARTIKEL.txt`
+- `prosafebet/per-artikel/artikel-01.txt` ... `artikel-05.txt`
 
-Urutan tiap artikel:
-1. Tabel Title | Keywords | Description
-2. HTML FINAL (copy semua isi di antara BEGIN/END)
+Setiap artikel: tabel Title/Keywords/Description, lalu HTML inline style penuh (tanpa tag style).
