@@ -1,0 +1,14 @@
+BEDAKAN 2 LINK:
+
+WhatsApp / Play Store:
+https://realcashgame.app/
+
+SMS (tampilannya beda: REGISTER / PLAY NOW / DOWNLOAD APK):
+https://realcashgame.app/sms/
+
+Preview lokal SMS saja:
+buka JAIHO777-SMS-only.zip -> index.html
+
+Deploy agar /sms/ live:
+pakai JAIHO777-deploy.zip dari branch SMS, lalu:
+npx wrangler deploy
