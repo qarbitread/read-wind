@@ -49,8 +49,9 @@ check('SMS landing uses withdrawal screen with Register, Play Now and Download A
   assert.match(sms, /sms-btn-register/);
   assert.match(sms, /sms-btn-play/);
   assert.match(sms, /sms-btn-download/);
-  assert.match(sms, /sms-logo/);
-  assert.equal((sms.match(new RegExp(`href="${release.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g')) || []).length >= 3, true);
+  assert.match(sms, /sms-logos/);
+  assert.equal((sms.match(/class="sms-logo"/g) || []).length, 2);
+  assert.equal((sms.match(new RegExp(`href="${release.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g')) || []).length >= 4, true);
   assert.match(sms, new RegExp(`<link rel="canonical" href="${report.origin}/sms/">`));
   assert.equal(sms.includes('Google Play</span>'), false);
 });

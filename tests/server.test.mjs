@@ -181,7 +181,7 @@ test('SEO routes agree on a clean canonical and contain factual application data
   assert.match(smsHtml, /REGISTER/);
   assert.match(smsHtml, /PLAY NOW/);
   assert.match(smsHtml, /DOWNLOAD APK/);
-  assert.equal((smsHtml.match(new RegExp(`href="${actualRelease.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\?utm_source=sms&amp;utm_campaign=blast-a"`, 'g')) || []).length >= 3, true);
+  assert.equal((smsHtml.match(new RegExp(`href="${actualRelease.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\?utm_source=sms&amp;utm_campaign=blast-a"`, 'g')) || []).length >= 4, true);
   assert.equal((await worker.fetch(request('/sms'))).status, 301);
 });
 

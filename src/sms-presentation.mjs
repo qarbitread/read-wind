@@ -5,7 +5,8 @@ export function renderSmsPage(config) {
   const a = config.apk;
   const fileSize = sizeLabel(a.sizeBytes);
   const withdraw = config.screenshots.find(item => /withdraw/i.test(item.title + item.caption + item.src)) || config.screenshots[config.screenshots.length - 1];
-  const logo = config.smsLogo || config.icon;
+  const logoA = config.smsLogo || config.icon;
+  const logoB = config.smsLogoB || config.smsLogo || config.icon;
   const downloadHref = e(a.url);
   const action = (label, placement, className) => (
     `<a class="sms-btn ${className}" href="${downloadHref}" download="${e(a.filename)}" data-download data-placement="${placement}" rel="noopener">` +
@@ -73,9 +74,14 @@ export function renderSmsPage(config) {
       ${action('PLAY NOW', 'sms-play', 'sms-btn-play')}
     </div>
     <figure class="sms-screen">
-      <a class="sms-logo" href="${downloadHref}" download="${e(a.filename)}" data-download data-placement="sms-logo" rel="noopener" aria-label="JAIHO777">
-        <img src="${e(logo)}" width="72" height="72" alt="JAIHO777" decoding="async" fetchpriority="high">
-      </a>
+      <div class="sms-logos" aria-label="JAIHO777">
+        <a class="sms-logo" href="${downloadHref}" download="${e(a.filename)}" data-download data-placement="sms-logo-a" rel="noopener" aria-label="JAIHO777">
+          <img src="${e(logoA)}" width="72" height="72" alt="JAIHO777" decoding="async" fetchpriority="high">
+        </a>
+        <a class="sms-logo" href="${downloadHref}" download="${e(a.filename)}" data-download data-placement="sms-logo-b" rel="noopener" aria-label="JAIHO777">
+          <img src="${e(logoB)}" width="72" height="72" alt="JAIHO777" decoding="async" fetchpriority="high">
+        </a>
+      </div>
       <img class="sms-screen-img" src="${e(withdraw.src)}" width="${withdraw.width}" height="${withdraw.height}" alt="${e(withdraw.alt)}" decoding="async" fetchpriority="high">
     </figure>
     <div class="sms-bottom">
