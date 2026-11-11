@@ -94,6 +94,7 @@ export function renderPages(site, release, files) {
     faviconPng: asset(site.faviconPng),
     appleIcon: asset(site.appleIcon),
     socialImage: asset(site.socialImage),
+    smsLogo: asset('/assets/brand/sms-logo-96.webp'),
     fontFraunces: asset('/assets/fonts/fraunces-semibold.woff2'),
     fontSora: asset('/assets/fonts/sora-semibold.woff2'),
     smsStyles: files.smsStyles,

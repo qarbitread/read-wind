@@ -28,14 +28,17 @@
 }
 
 :root {
-  --ink: #f7fff9;
-  --muted: rgba(247, 255, 249, 0.74);
-  --deep: #041910;
-  --forest: #0a2f22;
-  --mint: #3dffa0;
-  --gold: #ffd56a;
-  --gold-deep: #e2b13a;
-  --line: rgba(247, 255, 249, 0.14);
+  --deep: #04160f;
+  --panel: #06251a;
+  --ink: #f4fff8;
+  --register: #19d46a;
+  --register-deep: #0b9a48;
+  --play: #2f7bff;
+  --play-deep: #1653d6;
+  --download: #ff2d3b;
+  --download-deep: #c8101d;
+  --logo: #ffd54a;
+  --logo-deep: #f0b400;
 }
 
 * { box-sizing: border-box; }
@@ -45,13 +48,15 @@ html.sms-root, .sms-body {
   color: var(--ink);
   background: var(--deep);
   font-family: "Sora", sans-serif;
-  line-height: 1.45;
   -webkit-font-smoothing: antialiased;
 }
 .sms-body {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 1rem 0.85rem 1.25rem;
   position: relative;
   overflow-x: hidden;
-  padding-bottom: 5.5rem;
 }
 .sms-atmosphere {
   position: fixed;
@@ -59,266 +64,161 @@ html.sms-root, .sms-body {
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(120% 80% at 100% 0%, rgba(61, 255, 160, 0.18), transparent 55%),
-    radial-gradient(90% 70% at 0% 100%, rgba(255, 213, 106, 0.16), transparent 50%),
-    linear-gradient(160deg, #061f17 0%, #041910 45%, #0b2a1d 100%);
-}
-.sms-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(40px);
-  opacity: 0.55;
-  animation: sms-drift 12s ease-in-out infinite;
-}
-.sms-orb-a {
-  width: 28rem;
-  height: 28rem;
-  top: -8rem;
-  right: -6rem;
-  background: #127a4e;
-}
-.sms-orb-b {
-  width: 22rem;
-  height: 22rem;
-  bottom: 10%;
-  left: -8rem;
-  background: #9a7420;
-  animation-delay: -4s;
-}
-.sms-orb-c {
-  width: 16rem;
-  height: 16rem;
-  top: 40%;
-  left: 40%;
-  background: #1fa86c;
-  opacity: 0.28;
-  animation-delay: -7s;
-}
-.sms-sheen {
-  position: absolute;
-  inset: -20% -10%;
-  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.08) 48%, transparent 62%);
-  transform: translateX(-30%);
-  animation: sms-sheen 7.5s ease-in-out infinite;
+    radial-gradient(80% 60% at 50% 0%, rgba(25, 212, 106, 0.18), transparent 55%),
+    radial-gradient(70% 50% at 100% 100%, rgba(47, 123, 255, 0.16), transparent 50%),
+    radial-gradient(60% 45% at 0% 100%, rgba(255, 45, 59, 0.12), transparent 45%),
+    linear-gradient(180deg, #07281c 0%, #04160f 100%);
 }
 .sms-skip {
   position: absolute;
   left: -999px;
   top: 0;
-  z-index: 40;
-  background: var(--gold);
-  color: var(--deep);
-  padding: 0.6rem 1rem;
+  z-index: 20;
+  background: #fff;
+  color: #000;
+  padding: 0.55rem 0.8rem;
 }
-.sms-skip:focus { left: 1rem; top: 1rem; }
+.sms-skip:focus { left: 0.8rem; top: 0.8rem; }
 
-#sms-main,
-.sms-foot,
-.sms-sticky {
+.sms-shell,
+.sms-legal {
   position: relative;
   z-index: 1;
+  width: min(100%, 420px);
 }
-
-.sms-hero {
-  min-height: 100svh;
+.sms-stage {
   display: grid;
-  align-items: end;
-  gap: 1.5rem;
-  padding: 1.25rem 1.15rem 1.5rem;
-  max-width: 1180px;
-  margin: 0 auto;
-}
-.sms-hero-copy {
-  max-width: 36rem;
-  animation: sms-rise 0.8s ease both;
-}
-.sms-mark {
-  margin: 0 0 0.85rem;
-  display: inline-block;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--mint);
-}
-.sms-brand {
-  margin: 0;
-  font-family: "Fraunces", serif;
-  font-size: clamp(3.4rem, 16vw, 7.5rem);
-  line-height: 0.86;
-  letter-spacing: -0.045em;
-  text-wrap: balance;
-}
-.sms-brand span {
-  color: var(--gold);
-  background: linear-gradient(180deg, #ffe9a4 0%, var(--gold) 45%, var(--gold-deep) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-.sms-headline {
-  margin: 1.1rem 0 0.7rem;
-  font-family: "Fraunces", serif;
-  font-size: clamp(1.55rem, 5.8vw, 2.55rem);
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  max-width: 14ch;
-  color: rgba(247, 255, 249, 0.95);
-}
-.sms-lede {
-  margin: 0 0 1.35rem;
-  color: var(--muted);
-  font-size: clamp(0.98rem, 2.8vw, 1.12rem);
-  max-width: 30ch;
-}
-.sms-cta {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 0.12rem;
-  width: min(100%, 19rem);
-  padding: 1.05rem 1.3rem;
-  border-radius: 1rem;
-  text-decoration: none;
-  color: #1a1403;
+  gap: 0.85rem;
+  padding: 0.85rem;
+  border-radius: 1.4rem;
   background:
-    linear-gradient(180deg, #ffe9a8 0%, var(--gold) 42%, var(--gold-deep) 100%);
-  box-shadow:
-    0 18px 50px rgba(0, 0, 0, 0.35),
-    0 0 0 1px rgba(255, 255, 255, 0.18) inset;
-  transition: transform 160ms ease, filter 160ms ease;
-  animation: sms-pulse 2.6s ease-in-out 1s infinite;
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    var(--panel);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
+  animation: sms-rise 0.7s ease both;
 }
-.sms-cta:hover { transform: translateY(-2px) scale(1.01); filter: brightness(1.04); }
-.sms-cta:active { transform: translateY(0); }
-.sms-cta-main {
-  font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-.sms-cta-sub {
-  font-size: 0.76rem;
-  font-weight: 600;
-  opacity: 0.72;
-}
-.sms-fine {
-  margin: 0.85rem 0 0;
-  font-size: 0.8rem;
-  color: var(--muted);
-}
-
-.sms-hero-stage {
-  position: relative;
-  min-height: 26rem;
-  animation: sms-rise 0.9s ease 0.1s both;
-}
-.sms-stage-main,
-.sms-stage-side {
-  margin: 0;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  background: rgba(0, 0, 0, 0.25);
-}
-.sms-stage-main {
-  position: relative;
-  z-index: 2;
-  width: min(100%, 21rem);
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 1.55rem;
-  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.45);
-  animation: sms-float 5.8s ease-in-out infinite;
-}
-.sms-stage-side {
-  display: none;
-}
-.sms-stage-main img,
-.sms-stage-side img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.sms-flow {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 2.4rem 1.15rem 2rem;
-  border-top: 1px solid var(--line);
-  animation: sms-rise 0.9s ease 0.15s both;
-}
-.sms-flow-head h2 {
-  margin: 0;
-  font-family: "Fraunces", serif;
-  font-size: clamp(1.7rem, 4.5vw, 2.5rem);
-  letter-spacing: -0.03em;
-}
-.sms-flow-head p {
-  margin: 0.45rem 0 1.5rem;
-  color: var(--muted);
-}
-.sms-rail {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.sms-topbar {
   display: grid;
-  gap: 1.15rem;
-}
-.sms-rail li {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.9rem;
-  align-items: start;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--line);
-}
-.sms-rail li:last-child { border-bottom: 0; padding-bottom: 0; }
-.sms-num {
-  font-family: "Fraunces", serif;
-  font-size: 2rem;
-  line-height: 1;
-  color: var(--gold);
-  letter-spacing: -0.04em;
-}
-.sms-rail strong {
-  display: block;
-  font-size: 1.08rem;
-  margin-bottom: 0.2rem;
-}
-.sms-rail p {
-  margin: 0;
-  color: var(--muted);
-  max-width: 34ch;
-}
-
-.sms-foot {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 0 1.15rem 1.5rem;
-  color: var(--muted);
-  font-size: 0.8rem;
-}
-.sms-foot p { margin: 0 0 0.4rem; }
-.sms-foot a { color: var(--gold); }
-
-.sms-sticky {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 30;
-  padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
-  background: linear-gradient(180deg, transparent, rgba(4, 25, 16, 0.92) 28%, #041910 100%);
-}
-.sms-cta-sticky {
-  width: 100%;
-  max-width: 28rem;
-  margin: 0 auto;
-  display: flex;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  text-align: left;
+  gap: 0.55rem;
+}
+.sms-logo {
+  width: 4.1rem;
+  height: 4.1rem;
+  border-radius: 1rem;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  background: linear-gradient(180deg, #ffe57a 0%, var(--logo) 48%, var(--logo-deep) 100%);
+  box-shadow:
+    0 10px 24px rgba(240, 180, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  animation: sms-logo-pulse 2.8s ease-in-out infinite;
+}
+.sms-logo img {
+  width: 3.15rem;
+  height: 3.15rem;
+  border-radius: 0.75rem;
+  display: block;
+}
+.sms-screen {
+  margin: 0;
+  border-radius: 1.05rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #000;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  max-height: min(52svh, 26rem);
+}
+.sms-screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: min(52svh, 26rem);
+  object-fit: cover;
+  object-position: top center;
+}
+.sms-bottom {
+  display: grid;
+  gap: 0.45rem;
+}
+.sms-meta {
+  margin: 0;
+  text-align: center;
+  font-size: 0.74rem;
+  color: rgba(244, 255, 248, 0.65);
 }
 
+.sms-btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: 0.85rem;
+  text-decoration: none;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fff;
+  transform: translateZ(0);
+  transition: transform 160ms ease, filter 160ms ease, box-shadow 160ms ease;
+}
+.sms-btn-label { position: relative; z-index: 2; }
+.sms-btn-shine {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(115deg, transparent 25%, rgba(255, 255, 255, 0.45) 48%, transparent 70%);
+  transform: translateX(-120%);
+  animation: sms-shine 2.6s ease-in-out infinite;
+}
+.sms-btn:hover { transform: translateY(-2px) scale(1.015); filter: brightness(1.05); }
+.sms-btn:active { transform: translateY(0) scale(0.99); }
+
+.sms-btn-register {
+  justify-self: start;
+  min-width: 7.2rem;
+  color: #04160f;
+  background: linear-gradient(180deg, #5dff9d 0%, var(--register) 45%, var(--register-deep) 100%);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.25) inset,
+    0 10px 28px rgba(25, 212, 106, 0.45);
+  animation: sms-glow-green 2.4s ease-in-out infinite;
+}
+.sms-btn-play {
+  justify-self: end;
+  min-width: 7.2rem;
+  background: linear-gradient(180deg, #79a8ff 0%, var(--play) 45%, var(--play-deep) 100%);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.22) inset,
+    0 10px 28px rgba(47, 123, 255, 0.45);
+  animation: sms-glow-blue 2.4s ease-in-out infinite;
+  animation-delay: 0.35s;
+}
+.sms-btn-download {
+  width: 100%;
+  min-height: 3.55rem;
+  font-size: 1.05rem;
+  background: linear-gradient(180deg, #ff6b75 0%, var(--download) 42%, var(--download-deep) 100%);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.22) inset,
+    0 14px 36px rgba(255, 45, 59, 0.5);
+  animation: sms-glow-red 2.2s ease-in-out infinite;
+}
+
+.sms-legal {
+  margin: 0.85rem auto 0;
+  text-align: center;
+  font-size: 0.72rem;
+  color: rgba(244, 255, 248, 0.55);
+}
+.sms-legal a { color: #ffd54a; }
 .sms-sr {
   position: absolute;
   width: 1px;
@@ -332,77 +232,43 @@ html.sms-root, .sms-body {
 }
 
 @keyframes sms-rise {
-  from { opacity: 0; transform: translateY(18px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(16px) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
-@keyframes sms-float {
-  0%, 100% { transform: translateY(0) rotate(-0.4deg); }
-  50% { transform: translateY(-12px) rotate(0.5deg); }
+@keyframes sms-shine {
+  0%, 55% { transform: translateX(-130%); }
+  80%, 100% { transform: translateX(130%); }
 }
-@keyframes sms-pulse {
-  0%, 100% { box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.18) inset; }
-  50% { box-shadow: 0 20px 58px rgba(255, 213, 106, 0.28), 0 0 0 1px rgba(255, 255, 255, 0.22) inset; }
+@keyframes sms-logo-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 10px 24px rgba(240, 180, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.55); }
+  50% { transform: scale(1.04); box-shadow: 0 14px 30px rgba(240, 180, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.65); }
 }
-@keyframes sms-drift {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(2%, -3%, 0) scale(1.05); }
+@keyframes sms-glow-green {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25) inset, 0 10px 28px rgba(25, 212, 106, 0.4); }
+  50% { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35) inset, 0 12px 34px rgba(25, 212, 106, 0.7); }
 }
-@keyframes sms-sheen {
-  0%, 100% { transform: translateX(-35%); opacity: 0.35; }
-  50% { transform: translateX(25%); opacity: 0.7; }
+@keyframes sms-glow-blue {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.22) inset, 0 10px 28px rgba(47, 123, 255, 0.4); }
+  50% { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.32) inset, 0 12px 34px rgba(47, 123, 255, 0.7); }
+}
+@keyframes sms-glow-red {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.22) inset, 0 14px 36px rgba(255, 45, 59, 0.45); }
+  50% { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3) inset, 0 16px 42px rgba(255, 45, 59, 0.75); }
 }
 
-@media (min-width: 900px) {
-  .sms-body { padding-bottom: 0; }
-  .sms-sticky { display: none; }
-  .sms-hero {
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-    align-items: center;
-    gap: 1rem 2rem;
-    padding: 2rem 1.5rem 2.5rem;
-  }
-  .sms-hero-stage {
-    min-height: 36rem;
-    display: grid;
-    place-items: center;
-  }
-  .sms-stage-main {
-    width: min(100%, 24rem);
-    margin: 0;
-    transform-origin: center;
-  }
-  .sms-stage-side {
-    display: block;
-    position: absolute;
-    z-index: 1;
-    width: min(42%, 15rem);
-    left: 4%;
-    bottom: 8%;
-    border-radius: 1.2rem;
-    opacity: 0.88;
-    transform: rotate(-8deg);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
-    animation: sms-float 6.4s ease-in-out -1.2s infinite;
-  }
-  .sms-rail {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-  }
-  .sms-rail li {
-    border-bottom: 0;
-    padding-bottom: 0;
-  }
+@media (min-width: 760px) {
+  .sms-shell { width: min(100%, 430px); }
+  .sms-stage { padding: 1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sms-hero-copy,
-  .sms-hero-stage,
-  .sms-flow,
-  .sms-stage-main,
-  .sms-stage-side,
-  .sms-cta,
-  .sms-orb,
-  .sms-sheen {
+  .sms-stage,
+  .sms-btn,
+  .sms-btn-shine,
+  .sms-logo,
+  .sms-btn-register,
+  .sms-btn-play,
+  .sms-btn-download {
     animation: none !important;
   }
 }

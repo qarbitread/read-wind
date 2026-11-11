@@ -41,12 +41,16 @@ check('canonical, Open Graph and sitemap share the configured HTTPS origin', () 
   assert.equal(robots.includes('Allow: /'), true);
 });
 const sms = await read('public/sms/index.html');
-check('SMS landing uses UPI withdrawal theme and direct APK Install', () => {
+check('SMS landing uses withdrawal screen with Register, Play Now and Download APK', () => {
   assert.equal((sms.match(/<h1\b/g) || []).length, 1);
-  assert.match(sms, /Withdraw to your bank in minutes/);
-  assert.match(sms, /Pay with UPI/);
-  assert.match(sms, /sms-hero|sms-body/);
-  assert.equal(sms.includes(`href="${release.url}"`), true);
+  assert.match(sms, /REGISTER/);
+  assert.match(sms, /PLAY NOW/);
+  assert.match(sms, /DOWNLOAD APK/);
+  assert.match(sms, /sms-btn-register/);
+  assert.match(sms, /sms-btn-play/);
+  assert.match(sms, /sms-btn-download/);
+  assert.match(sms, /sms-logo/);
+  assert.equal((sms.match(new RegExp(`href="${release.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g')) || []).length >= 3, true);
   assert.match(sms, new RegExp(`<link rel="canonical" href="${report.origin}/sms/">`));
   assert.equal(sms.includes('Google Play</span>'), false);
 });

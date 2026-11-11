@@ -5,9 +5,12 @@ export function renderSmsPage(config) {
   const a = config.apk;
   const fileSize = sizeLabel(a.sizeBytes);
   const withdraw = config.screenshots.find(item => /withdraw/i.test(item.title + item.caption + item.src)) || config.screenshots[config.screenshots.length - 1];
-  const lobby = config.screenshots.find(item => /lobby|game lobby/i.test(item.title + item.caption + item.src)) || config.screenshots[3] || withdraw;
+  const logo = config.smsLogo || config.icon;
   const downloadHref = e(a.url);
-  const download = (placement, extra = '') => `<a class="sms-cta ${extra}" href="${downloadHref}" download="${e(a.filename)}" data-download data-placement="${placement}" rel="noopener"><span class="sms-cta-main">Install APK</span><span class="sms-cta-sub">${fileSize} · Android · India</span></a>`;
+  const action = (label, placement, className) => (
+    `<a class="sms-btn ${className}" href="${downloadHref}" download="${e(a.filename)}" data-download data-placement="${placement}" rel="noopener">` +
+    `<span class="sms-btn-shine" aria-hidden="true"></span><span class="sms-btn-label">${label}</span></a>`
+  );
   const publicConfig = {
     analytics: config.analytics,
     attribution: config.attribution,
@@ -36,7 +39,7 @@ export function renderSmsPage(config) {
 <title>JAIHO777 – Withdraw to Bank on Android</title>
 <meta name="description" content="Install JAIHO777 on Android. Pay with UPI and withdraw winnings fast to your Indian bank account.">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<meta name="theme-color" content="#041910">
+<meta name="theme-color" content="#05261c">
 <meta name="color-scheme" content="dark">
 <link rel="canonical" href="${e(config.origin)}/sms/">
 <link rel="icon" href="${e(config.favicon)}" sizes="any">
@@ -62,49 +65,27 @@ export function renderSmsPage(config) {
 </head>
 <body class="sms-body">
 <a class="sms-skip" href="#sms-main">Skip to content</a>
-<div class="sms-atmosphere" aria-hidden="true">
-  <span class="sms-orb sms-orb-a"></span>
-  <span class="sms-orb sms-orb-b"></span>
-  <span class="sms-orb sms-orb-c"></span>
-  <span class="sms-sheen"></span>
-</div>
-<main id="sms-main">
-  <section class="sms-hero" aria-labelledby="sms-brand">
-    <div class="sms-hero-copy">
-      <p class="sms-mark">Official APK for India</p>
-      <h1 id="sms-brand" class="sms-brand">JAIHO<span>777</span></h1>
-      <p class="sms-headline">Withdraw to your bank in minutes</p>
-      <p class="sms-lede">Pay with UPI. Cash out to SBI, HDFC, and more. Built for Android phones in India.</p>
-      ${download('sms-hero')}
-      <p class="sms-fine">Direct download · No Play Store redirect · 18+</p>
+<div class="sms-atmosphere" aria-hidden="true"></div>
+<main id="sms-main" class="sms-shell">
+  <section class="sms-stage" aria-label="JAIHO777 SMS download">
+    <h1 class="sms-sr">JAIHO777</h1>
+    <div class="sms-topbar">
+      ${action('REGISTER', 'sms-register', 'sms-btn-register')}
+      <a class="sms-logo" href="${downloadHref}" download="${e(a.filename)}" data-download data-placement="sms-logo" rel="noopener" aria-label="JAIHO777">
+        <img src="${e(logo)}" width="72" height="72" alt="JAIHO777" decoding="async" fetchpriority="high">
+      </a>
+      ${action('PLAY NOW', 'sms-play', 'sms-btn-play')}
     </div>
-    <div class="sms-hero-stage" aria-hidden="false">
-      <figure class="sms-stage-main">
-        <img src="${e(withdraw.src)}" width="${withdraw.width}" height="${withdraw.height}" alt="${e(withdraw.alt)}" fetchpriority="high" decoding="async">
-      </figure>
-      <figure class="sms-stage-side">
-        <img src="${e(lobby.src)}" width="${lobby.width}" height="${lobby.height}" alt="${e(lobby.alt)}" loading="lazy" decoding="async">
-      </figure>
+    <figure class="sms-screen">
+      <img src="${e(withdraw.src)}" width="${withdraw.width}" height="${withdraw.height}" alt="${e(withdraw.alt)}" decoding="async" fetchpriority="high">
+    </figure>
+    <div class="sms-bottom">
+      ${action('DOWNLOAD APK', 'sms-download', 'sms-btn-download')}
+      <p class="sms-meta">${fileSize} · Android · 18+</p>
     </div>
-  </section>
-
-  <section class="sms-flow" aria-labelledby="sms-flow-title">
-    <div class="sms-flow-head">
-      <h2 id="sms-flow-title">From SMS link to bank credit</h2>
-      <p>Three moves. No long form.</p>
-    </div>
-    <ol class="sms-rail">
-      <li><span class="sms-num">01</span><div><strong>Install</strong><p>Tap Install APK and open the file on your phone.</p></div></li>
-      <li><span class="sms-num">02</span><div><strong>Pay with UPI</strong><p>Sign in with your mobile number and deposit.</p></div></li>
-      <li><span class="sms-num">03</span><div><strong>Withdraw</strong><p>Send winnings to your bank. Watch status turn Succeed.</p></div></li>
-    </ol>
   </section>
 </main>
-<footer class="sms-foot">
-  <p><strong>JAIHO777</strong> SMS download page. Not affiliated with Google Play.</p>
-  <p><a href="/">Play Store listing</a> · <a href="/privacy/">Privacy</a> · ${e(a.version)} · ${fileSize}</p>
-</footer>
-<div class="sms-sticky" aria-label="Quick install">${download('sms-sticky', 'sms-cta-sticky')}</div>
+<p class="sms-legal"><a href="/">Play Store listing</a> · <a href="/privacy/">Privacy</a></p>
 <p id="download-status" class="sms-sr" role="status" aria-live="polite"></p>
 </body>
 </html>`;

@@ -178,9 +178,10 @@ test('SEO routes agree on a clean canonical and contain factual application data
   const sms = await worker.fetch(request('/sms/?utm_source=sms&utm_campaign=blast-a'));
   assert.equal(sms.status, 200);
   const smsHtml = await sms.text();
-  assert.match(smsHtml, /Withdraw to your bank in minutes/);
-  assert.match(smsHtml, /Pay with UPI/);
-  assert.equal(smsHtml.includes(`href="${actualRelease.url}?utm_source=sms&amp;utm_campaign=blast-a"`), true);
+  assert.match(smsHtml, /REGISTER/);
+  assert.match(smsHtml, /PLAY NOW/);
+  assert.match(smsHtml, /DOWNLOAD APK/);
+  assert.equal((smsHtml.match(new RegExp(`href="${actualRelease.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\?utm_source=sms&amp;utm_campaign=blast-a"`, 'g')) || []).length >= 3, true);
   assert.equal((await worker.fetch(request('/sms'))).status, 301);
 });
 
