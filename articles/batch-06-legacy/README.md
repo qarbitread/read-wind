@@ -2,13 +2,18 @@
 
 APK: `jaiho777a_J6NJ4881PJ3.apk` (situs lama)
 
+Setiap artikel wajib punya **Title + Keywords + Description**.
+
 ## Artikel 1
 
 | Article Title | Keywords | Description |
 |---|---|---|
 | Your Daily Code Is Waiting on JAIHO777 Telegram — Why Loyal Indian Players Check Promo Codes Every Morning | JAIHO777 daily code, Telegram promo codes India, daily promo code cash games, JAIHO777 Telegram offer | Loyal JAIHO777 players in India are treating daily Telegram promo codes like morning chai. See how new codes drop, why trust matters, and how to claim without FOMO chaos. |
 
-File: `01-daily-code-telegram.html`
+- **Title:** Your Daily Code Is Waiting on JAIHO777 Telegram — Why Loyal Indian Players Check Promo Codes Every Morning
+- **Keywords:** JAIHO777 daily code, Telegram promo codes India, daily promo code cash games, JAIHO777 Telegram offer
+- **Description:** Loyal JAIHO777 players in India are treating daily Telegram promo codes like morning chai. See how new codes drop, why trust matters, and how to claim without FOMO chaos.
+- **File:** `01-daily-code-telegram.html`
 
 ## Artikel 2
 
@@ -16,7 +21,10 @@ File: `01-daily-code-telegram.html`
 |---|---|---|
 | Supercharge Your Deposit on JAIHO777: Is Up to 180% Extra Bonus Worth the Hype for Mature Cash Gamers? | JAIHO777 deposit bonus, supercharge deposit 180%, top up bonus India cash games, extra deposit reward JAIHO777 | An editorial take on JAIHO777 deposit supercharge claims up to 180% extra. We unpack value, UPI top-ups, and what experienced Indian earning-game players should verify first. |
 
-File: `02-supercharge-deposit.html`
+- **Title:** Supercharge Your Deposit on JAIHO777: Is Up to 180% Extra Bonus Worth the Hype for Mature Cash Gamers?
+- **Keywords:** JAIHO777 deposit bonus, supercharge deposit 180%, top up bonus India cash games, extra deposit reward JAIHO777
+- **Description:** An editorial take on JAIHO777 deposit supercharge claims up to 180% extra. We unpack value, UPI top-ups, and what experienced Indian earning-game players should verify first.
+- **File:** `02-supercharge-deposit.html`
 
 ## Artikel 3
 
@@ -24,7 +32,10 @@ File: `02-supercharge-deposit.html`
 |---|---|---|
 | Lucky Wheel vs Static Bonuses on JAIHO777 — Which Reward Style Feels Fairer for Real Cash Game Regulars? | JAIHO777 lucky wheel, spin to win cash games India, lucky wheel prizes vs deposit bonus, exciting prizes lucky wheel | Comparing JAIHO777 Lucky Wheel excitement with static bonus menus. See prize lanes, spin psychology, and how Mumbai-to-Bangalore regulars decide what feels fair. |
 
-File: `03-lucky-wheel.html`
+- **Title:** Lucky Wheel vs Static Bonuses on JAIHO777 — Which Reward Style Feels Fairer for Real Cash Game Regulars?
+- **Keywords:** JAIHO777 lucky wheel, spin to win cash games India, lucky wheel prizes vs deposit bonus, exciting prizes lucky wheel
+- **Description:** Comparing JAIHO777 Lucky Wheel excitement with static bonus menus. See prize lanes, spin psychology, and how Mumbai-to-Bangalore regulars decide what feels fair.
+- **File:** `03-lucky-wheel.html`
 
 ## Artikel 4
 
@@ -32,7 +43,10 @@ File: `03-lucky-wheel.html`
 |---|---|---|
 | Rising Mepusr Super Win Spotlight: How One JAIHO777 UID Hit ₹1.56 Lakh — And What Loyal Players Should Really Learn | Rising Mepusr JAIHO777, super win spotlight India, slot win story cash games, JAIHO777 member win showcase | A member-style spotlight on a Rising Mepusr super win near ₹1.56 lakh on JAIHO777. Inspiration yes, guaranteed profit no — lessons for disciplined Indian cash-game fans. |
 
-File: `04-rising-mepusr-spotlight.html`
+- **Title:** Rising Mepusr Super Win Spotlight: How One JAIHO777 UID Hit ₹1.56 Lakh — And What Loyal Players Should Really Learn
+- **Keywords:** Rising Mepusr JAIHO777, super win spotlight India, slot win story cash games, JAIHO777 member win showcase
+- **Description:** A member-style spotlight on a Rising Mepusr super win near ₹1.56 lakh on JAIHO777. Inspiration yes, guaranteed profit no — lessons for disciplined Indian cash-game fans.
+- **File:** `04-rising-mepusr-spotlight.html`
 
 ## Artikel 5
 
@@ -40,4 +54,7 @@ File: `04-rising-mepusr-spotlight.html`
 |---|---|---|
 | Slot Game Trend on JAIHO777: Why Indian Players From Delhi to Goa Are Opening the Lobby Before Dinner | JAIHO777 slot game, play slots win big India, best earning game slots India, mobile slot lobby JAIHO777 | Trend analysis of JAIHO777 slot lobby energy across India. From quick UPI top-ups to evening sessions, see why slots are reshaping casual real cash game habits. |
 
-File: `05-slot-game-trend.html`
+- **Title:** Slot Game Trend on JAIHO777: Why Indian Players From Delhi to Goa Are Opening the Lobby Before Dinner
+- **Keywords:** JAIHO777 slot game, play slots win big India, best earning game slots India, mobile slot lobby JAIHO777
+- **Description:** Trend analysis of JAIHO777 slot lobby energy across India. From quick UPI top-ups to evening sessions, see why slots are reshaping casual real cash game habits.
+- **File:** `05-slot-game-trend.html`
