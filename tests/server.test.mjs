@@ -9,7 +9,12 @@ import { collectAttribution } from '../src/server/attribution.mjs';
 const site = JSON.parse(await readFile(new URL('../config/site.json', import.meta.url)));
 const actualRelease = JSON.parse(await readFile(new URL('../config/release.json', import.meta.url)));
 const release = { ...actualRelease, sizeBytes: 4 };
-const pages = renderPages(site, release, { styles: '/assets/site.css', script: '/assets/app.js' });
+const pages = renderPages(site, release, {
+  styles: '/assets/site.css',
+  script: '/assets/app.js',
+  smsStyles: '/assets/sms.css',
+  smsScript: '/assets/sms.js'
+});
 const asset = { base64: 'aWNvbg==', size: 4, type: 'image/webp', etag: '"test-etag"', immutable: true };
 const makeWorker = (fetchImpl, overrides = {}) => createWorker({
   site, release, pages, assets: { '/assets/test.abcd.webp': asset }, fetchImpl, ...overrides
@@ -164,11 +169,19 @@ test('SEO routes agree on a clean canonical and contain factual application data
   assert.match(html, /name="robots" content="index,follow/);
   assert.match(await (await worker.fetch(request('/robots.txt'))).text(), /Disallow: \//);
   const sitemap = await (await worker.fetch(request('/sitemap.xml'))).text();
-  assert.equal((sitemap.match(/<loc>/g) || []).length, 2);
+  assert.equal((sitemap.match(/<loc>/g) || []).length, 3);
+  assert.equal(sitemap.includes(site.origin + '/sms/'), true);
   assert.equal(sitemap.includes(site.origin + '/privacy/'), true);
   const privacy = await worker.fetch(request('/privacy/'));
   assert.equal(privacy.status, 200);
   assert.match(await privacy.text(), /Website privacy notice/);
+  const sms = await worker.fetch(request('/sms/?utm_source=sms&utm_campaign=blast-a'));
+  assert.equal(sms.status, 200);
+  const smsHtml = await sms.text();
+  assert.match(smsHtml, /Withdraw to your bank in minutes/);
+  assert.match(smsHtml, /Pay with UPI/);
+  assert.equal(smsHtml.includes(`href="${actualRelease.url}?utm_source=sms&amp;utm_campaign=blast-a"`), true);
+  assert.equal((await worker.fetch(request('/sms'))).status, 301);
 });
 
 test('HTTPS, restrictive browser headers, canonical aliases and allowed methods are enforced', async () => {

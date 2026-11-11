@@ -80,7 +80,7 @@ function relativizeHtmlBytes(name, bytes) {
     );
   }
   if (!/\.html?$/i.test(name)) return bytes;
-  const prefix = name.includes('/privacy/') ? '../assets/' : 'assets/';
+  const prefix = (name.includes('/privacy/') || name.includes('/sms/')) ? '../assets/' : 'assets/';
   return Buffer.from(
     text
       .replaceAll('href="/assets/', `href="${prefix}`)
@@ -152,6 +152,7 @@ async function relativizePreview(file, assetPrefix) {
   await writeFile(file, text);
 }
 await relativizePreview(path.join(readable, 'index.html'), 'assets/');
+await relativizePreview(path.join(readable, 'sms/index.html'), '../assets/');
 await relativizePreview(path.join(readable, 'privacy/index.html'), '../assets/');
 for (const entry of await readdir(path.join(readable, 'assets/css'))) {
   if (entry.endsWith('.css')) {
@@ -171,7 +172,9 @@ previewFiles.push({
     'Jika masih rusak, jalankan di folder 03-html-preview:\n' +
     '  python -m http.server 8080\n' +
     'lalu buka http://localhost:8080/\n' +
-    'Tombol DOWNLOAD APK hanya berfungsi lewat paket deploy/server, bukan preview HTML.\n',
+    'Tombol Install langsung ke APK CloudFront.\n' +
+    'Halaman SMS (tema UPI/withdrawal): buka sms/index.html\n' +
+    'Link blast SMS: https://realcashgame.app/sms/?utm_source=sms&utm_medium=sms&utm_campaign=NAMA\n',
     'utf8'
   )
 });

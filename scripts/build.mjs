@@ -29,7 +29,7 @@ if(site.publisherVerified&&!site.publisher)throw new Error('A verified publisher
 if(!site.screenshots.length)throw new Error('Owner-supplied app screenshots are required');
 
 await rm(output,{recursive:true,force:true});
-for(const dir of ['public','public/privacy','server','readable/privacy','reports','.openai'])await mkdir(path.join(output,dir),{recursive:true});
+for(const dir of ['public','public/privacy','public/sms','server','readable/privacy','readable/sms','reports','.openai'])await mkdir(path.join(output,dir),{recursive:true});
 const types={'.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.ico':'image/x-icon','.woff2':'font/woff2','.txt':'text/plain; charset=utf-8'};
 const files={};
 const assets={};
@@ -66,19 +66,28 @@ let css=await readFile(path.join(root,'src/styles/site.css'),'utf8');
 for(const [original,uri]of Object.entries(files))css=css.split(original).join(uri);
 const cssResult=await transform(css,{loader:'css',minify:true,legalComments:'none',target:['chrome80','safari13']});
 files.styles=await addAsset('/assets/css/site.min.css',Buffer.from(cssResult.code));
+let smsCss=await readFile(path.join(root,'src/styles/sms.css'),'utf8');
+for(const [original,uri]of Object.entries(files))smsCss=smsCss.split(original).join(uri);
+const smsCssResult=await transform(smsCss,{loader:'css',minify:true,legalComments:'none',target:['chrome80','safari13']});
+files.smsStyles=await addAsset('/assets/css/sms.min.css',Buffer.from(smsCssResult.code));
 const client=await readFile(path.join(root,'src/client/app.js'),'utf8');
 const jsResult=await transform(client,{loader:'js',minify:true,legalComments:'none',target:'es2018',charset:'utf8'});
 files.script=await addAsset('/assets/js/app.min.js',Buffer.from(jsResult.code));
+const smsClient=await readFile(path.join(root,'src/client/sms.js'),'utf8');
+const smsJsResult=await transform(smsClient,{loader:'js',minify:true,legalComments:'none',target:'es2018',charset:'utf8'});
+files.smsScript=await addAsset('/assets/js/sms.min.js',Buffer.from(smsJsResult.code));
 const rendered=renderPages(site,release,files);
 const pages={...rendered};
-for(const key of ['index','privacy','notFound','downloadError']){
+for(const key of ['index','sms','privacy','notFound','downloadError']){
   pages[key]=await minify(rendered[key],{collapseWhitespace:true,conservativeCollapse:true,removeComments:true,removeAttributeQuotes:false,collapseBooleanAttributes:true,minifyCSS:false,minifyJS:false});
   if(pages[key].includes('{{'))throw new Error(`Unresolved template data in ${key}`);
 }
 if(!pages.index.includes(`href="${release.url}"`))throw new Error('Install buttons must use the direct release APK URL');
-const publicPages={'index.html':pages.index,'privacy/index.html':pages.privacy,'404.html':pages.notFound,'robots.txt':pages.robots,'sitemap.xml':pages.sitemap};
+if(!pages.sms.includes(`href="${release.url}"`))throw new Error('SMS Install button must use the direct release APK URL');
+const publicPages={'index.html':pages.index,'sms/index.html':pages.sms,'privacy/index.html':pages.privacy,'404.html':pages.notFound,'robots.txt':pages.robots,'sitemap.xml':pages.sitemap};
 for(const [relative,body]of Object.entries(publicPages))await writeFile(path.join(output,'public',relative),body);
 await writeFile(path.join(output,'readable/index.html'),readableHtml(rendered.index));
+await writeFile(path.join(output,'readable/sms/index.html'),readableHtml(rendered.sms));
 await writeFile(path.join(output,'readable/privacy/index.html'),readableHtml(rendered.privacy));
 await copyFile(path.join(output,'public',files[site.favicon].slice(1)),path.join(output,'public/favicon.ico'));
 assets['/favicon.ico']={...assets[files[site.favicon]],immutable:false};

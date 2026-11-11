@@ -55,14 +55,22 @@ export function createWorker({ site, release, assets, pages, fetchImpl = (...arg
         return response(file.body, file.status, file.headers);
       }
 
-      if (path === '/index.html' || path === '/privacy' || path === '/privacy/index.html') {
-        url.pathname = path === '/index.html' ? '/' : '/privacy/';
+      if (path === '/index.html' || path === '/privacy' || path === '/privacy/index.html' || path === '/sms' || path === '/sms/index.html') {
+        url.pathname = path === '/index.html' ? '/' : path.startsWith('/sms') ? '/sms/' : '/privacy/';
         return response(null, 301, { Location: url.href, 'Cache-Control': 'public, max-age=3600' });
       }
-      if (path === '/') {
+      const withApkAttribution = (html) => {
         const labels = new URLSearchParams(collectAttribution(url.searchParams, site.attribution)).toString();
         const apkHref = `href="${htmlEscape(release.url)}"`;
-        const page = labels ? pages.index.replaceAll(apkHref, `href="${htmlEscape(release.url)}?${htmlEscape(labels)}"`) : pages.index;
+        const page = labels ? html.replaceAll(apkHref, `href="${htmlEscape(release.url)}?${htmlEscape(labels)}"`) : html;
+        return { page, labels };
+      };
+      if (path === '/') {
+        const { page, labels } = withApkAttribution(pages.index);
+        return htmlResponse(request, page, 200, labels ? { 'Cache-Control': 'private, no-store' } : {});
+      }
+      if (path === '/sms/') {
+        const { page, labels } = withApkAttribution(pages.sms);
         return htmlResponse(request, page, 200, labels ? { 'Cache-Control': 'private, no-store' } : {});
       }
       if (path === '/privacy/') return htmlResponse(request, pages.privacy);

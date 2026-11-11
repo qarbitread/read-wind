@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { icon } from './icons.mjs';
 import { renderPage as renderPresentation } from './presentation.mjs';
+import { renderSmsPage } from './sms-presentation.mjs';
 
 export const escapeHtml = (value = '') => String(value).replace(/[&<>"']/g, character => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
@@ -87,6 +88,17 @@ export function renderPages(site, release, files) {
   const index = fill(readTemplate('index'), {
     LANGUAGE: e(site.language), HEAD: head(homeTitle, '/', description, true, true), BODY: body
   });
+  const sms = renderSmsPage({
+    ...presentationConfig,
+    favicon: asset(site.favicon),
+    faviconPng: asset(site.faviconPng),
+    appleIcon: asset(site.appleIcon),
+    socialImage: asset(site.socialImage),
+    fontFraunces: asset('/assets/fonts/fraunces-semibold.woff2'),
+    fontSora: asset('/assets/fonts/sora-semibold.woff2'),
+    smsStyles: files.smsStyles,
+    smsScript: files.smsScript
+  });
   const privacy = fill(readTemplate('privacy'), {
     ...common, HEAD: head('Website privacy notice | JAIHO777', '/privacy/', 'How the JAIHO777 APK download website handles campaign labels, browser storage and optional website metrics.')
   });
@@ -95,9 +107,9 @@ export function renderPages(site, release, files) {
     ERROR_CODE: String(code), ERROR_TITLE: e(title), ERROR_MESSAGE: e(message)
   });
   return {
-    index, privacy,
+    index, sms, privacy,
     robots: `User-agent: *\nAllow: /\nDisallow: /download\nDisallow: /api/\n\nSitemap: ${origin}/sitemap.xml\n`,
-    sitemap: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>${e(origin)}/</loc><lastmod>${site.updatedAt}</lastmod></url>\n  <url><loc>${e(origin)}/privacy/</loc><lastmod>${site.updatedAt}</lastmod></url>\n</urlset>\n`,
+    sitemap: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>${e(origin)}/</loc><lastmod>${site.updatedAt}</lastmod></url>\n  <url><loc>${e(origin)}/sms/</loc><lastmod>${site.updatedAt}</lastmod></url>\n  <url><loc>${e(origin)}/privacy/</loc><lastmod>${site.updatedAt}</lastmod></url>\n</urlset>\n`,
     notFound: error(404, 'Page not found', 'The page you requested is not available. Return to the app page for download information.'),
     downloadError: error(503, 'Download temporarily unavailable', 'Check your connection and try again in a moment.')
   };

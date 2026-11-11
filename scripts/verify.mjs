@@ -35,10 +35,20 @@ check('canonical, Open Graph and sitemap share the configured HTTPS origin', () 
   assert.equal(index.includes(`property="og:image" content="${report.origin}/assets/brand/`), true);
   assert.equal(privacy.includes(`rel="canonical" href="${report.origin}/privacy/"`), true);
   const locations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
-  assert.deepEqual(locations, [report.origin + '/', report.origin + '/privacy/']);
+  assert.deepEqual(locations, [report.origin + '/', report.origin + '/sms/', report.origin + '/privacy/']);
   assert.equal(robots.includes(`Sitemap: ${report.origin}/sitemap.xml`), true);
   assert.equal(robots.includes('Disallow: /download'), true);
   assert.equal(robots.includes('Allow: /'), true);
+});
+const sms = await read('public/sms/index.html');
+check('SMS landing uses UPI withdrawal theme and direct APK Install', () => {
+  assert.equal((sms.match(/<h1\b/g) || []).length, 1);
+  assert.match(sms, /Withdraw to your bank in minutes/);
+  assert.match(sms, /Pay with UPI/);
+  assert.match(sms, /sms-hero|sms-body/);
+  assert.equal(sms.includes(`href="${release.url}"`), true);
+  assert.match(sms, new RegExp(`<link rel="canonical" href="${report.origin}/sms/">`));
+  assert.equal(sms.includes('Google Play</span>'), false);
 });
 check('seven supplied screens, withdrawals banner, lazy thumbnails and factual structured data', () => {
   assert.equal((index.match(/data-gallery=/g) || []).length, 7);
@@ -102,7 +112,7 @@ for (const url of Object.values(report.assetManifest)) await stat(path.join(dist
 checks.push('every hashed browser asset exists');
 
 const worker = (await import(pathToFileURL(path.join(dist, 'server/index.js')).href)).default;
-for (const route of ['/', '/privacy/', '/robots.txt', '/sitemap.xml', ...Object.values(report.assetManifest)]) {
+for (const route of ['/', '/sms/', '/privacy/', '/robots.txt', '/sitemap.xml', ...Object.values(report.assetManifest)]) {
   const response = await worker.fetch(new Request(report.origin + route, { method: 'HEAD' }));
   assert.equal(response.status, 200, route);
   assert.equal(response.headers.get('X-Content-Type-Options'), 'nosniff', route);
