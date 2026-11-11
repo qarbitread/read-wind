@@ -224,17 +224,15 @@ html.sms-root, .sms-body {
 @media (min-width: 760px) {
   .sms-body {
     display: grid;
-    place-items: center;
+    place-items: start center;
     background: #020c08;
     padding: 1rem 0;
   }
   .sms-shell {
-    min-height: min(100svh, 920px);
     border-radius: 1rem;
-    overflow: hidden;
+    overflow: visible;
     box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
   }
-  .sms-stage { min-height: min(100svh, 920px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
