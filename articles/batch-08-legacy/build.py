@@ -186,6 +186,7 @@ def art3():
 <p style='margin:0 0 14px;color:#2f4d6f'>That is the modern member-story format for a legacy brand audience — warm, clear, and adult. No stiff brochure tone. No fake certainty. Just a bright spotlight with a readable stop line.</p>
 <p style='margin:0 0 14px;color:#2f4d6f'>Parents or older cousins who see the chicken banner may ask what it means. Explain simply: a playful game spotlight inside a real cash game app, with age rules and no guaranteed outcomes. That sentence travels better through family chats than raw hype alone.</p>
 <p style='margin:0 0 14px;color:#2f4d6f'>Cross when the light is green in your own plan — surplus funds, clear timer, official APK. Otherwise wait on the curb. The street will still be sunny tomorrow; forced top-ups rarely are.</p>
+<p style='margin:0 0 14px;color:#2f4d6f'>Keep Chicken Road 3 as a short, cheerful session on JAIHO777 — then log out while you still like the walk home.</p>
 <p style='margin:0 0 18px;text-align:center'>{cta('OPEN JAIHO777 NOW','#4cc9f0','#1d3557','#1d3557','18px')}</p>
 </section>
 <section id='faq-ch'>
