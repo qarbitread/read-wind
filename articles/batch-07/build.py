@@ -189,6 +189,7 @@ def art3():
 <p style='margin:0 0 14px;color:#ffe9df'>Think of the bonus like the last festival sweet on the tray. Take one thoughtfully. Do not finish the tray to prove celebration. Missing a closing offer is cheaper than a tilted chase that ruins tomorrow morning.</p>
 <p style='margin:0 0 14px;color:#ffe9df'>Modern event pages should feel fast, colorful, and honest. This final-day desk keeps the coral heat for urgency while the checklist stays adult. If the banner created the desire to deposit more than your weekly plan, wait. Desire that survives a night of sleep is safer than desire born from a flaming wolf graphic and lightning CTAs.</p>
 <p style='margin:0 0 14px;color:#ffe9df'>When the window closes, stop hunting mirrors for leftover codes. Later JAIHO777 offers may appear with different numbers. Tonight is a calendar fact — useful if you were already planning to try the app, dangerous if you are chasing losses from earlier in the week.</p>
+<p style='margin:0 0 14px;color:#ffe9df'>Log in and claim today can be a clean sentence if your budget was already approved. If it is not approved, the brighter choice is dinner with family and a fresh look tomorrow — without shame, without secret APKs, without OTP scams dressed as surprise gifts.</p>
 <p style='margin:0 0 18px;text-align:center'>{cta('CLAIM BEFORE CLOSE','#ffffff','#1a1033','#ff6b35','999px')}</p>
 </section>
 <section id='faq-final'>
