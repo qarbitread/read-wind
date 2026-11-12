@@ -1,0 +1,333 @@
+#!/usr/bin/env python3
+"""Batch 07 — 4 fresh inline-only JAIHO777 articles (adminsafebet / new site)."""
+from pathlib import Path
+import re
+
+ROOT = Path(__file__).resolve().parent
+PUB = ROOT.parent.parent / 'publish' / 'batch-07'
+LOGO = 'https://www.prosafeimg.com/uploads/20260731/6a6c6e378c7f6.png'
+APK = 'https://d3iha5lcurdryc.cloudfront.net/jaiho777_119CBDGML2F.apk'
+IMG = [
+    'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh8IEQWzhAVLwJzRimXyGrcF8_mJK3sXdYjU5DYInvNWz-6MWhpmKOPG8XYYuE1tpY56E5xoAyDXoB2Ya-OgkSypo7tfd48RUx-5iSC2ufCwLO66ipUYKN6ImrTibTzyDlJdmDzZr__QBCB8cKca76dBib68lt5vjvJsJApUVgePriHbu2-x4wvfwKTbnHL/s700/1_P155.3_700x500.webp',
+    'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjnXcTss8IyMbg0tEYEnRCMY7a_hmiX8EPby9h5hD-ahJKu-obxxCcqyVSJtGlT-AOF4IWGo_rfFxBmLTWkN21VTlHOw1m6KbOIdj-zja3Ldn-oyjjV-ayS0vyU-2SMZsbwsiTn__leZ1_1GzLMPk2flFXgpSda_toOyn2evtbH8SuP8ExYrSvX48ItZeHS/s700/2_p156.2_700x500.webp',
+    'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhMqzO1_4j2ER_lHElsICQE9U_EtKI93pKaYQagr37-gEL1fZ4-GjpcoSu4K42qsRLNcQWMeemexWJ9__VlyGXSl4gNggmkd3i1YSsT0x-4w2dbqtKUK1S73jNDLhsADcH0O3SDheINEKEt7MFFYIAX4soHg0yZokdjaMKC81U5i0le2FAT3qH_phQJropi/s700/3_p156.3_700x500.webp',
+    'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhYP0MqphM5ShV3wH8RaDBbJRNez_JVSLwFr8oBaatJpUNmlbI89bRMi3RCUVW3yqFDUIwD6D8hJBBcrW3Lq6-FTWn1nzrPai2rJ7Q-lYKFXKEvxxT3Ww5Qgpy4__eTvRoMKUPw_FFIyh49wQ5yajUPxFIb-nnyu3tSLDbz2faYTT4-Lbeu65WfBVA75M-c/s700/4_p156.5_700x500.webp',
+]
+
+
+def ok(html, name):
+    if '"' in html:
+        raise SystemExit(f'{name}: double quote')
+    if '<style' in html.lower() or '<br' in html.lower() or '&nbsp;' in html:
+        raise SystemExit(f'{name}: forbidden tag/entity')
+    if 'adminsafebet' in html.lower() or 'jaiho777a_' in html:
+        raise SystemExit(f'{name}: wrong url/apk')
+    if APK not in html:
+        raise SystemExit(f'{name}: missing apk')
+    words = len(re.sub(r'<[^>]+>', ' ', html).split())
+    if words < 500:
+        raise SystemExit(f'{name}: {words} words')
+    print(f'OK {name}: {words} words')
+
+
+def cta(label, bg, fg, shadow, radius='0', extra=''):
+    return (
+        f"<a href='{APK}' title='{label}' style='display:inline-block;margin:10px 0 0;padding:14px 26px;"
+        f"background:{bg};color:{fg};font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:800;"
+        f"text-decoration:none;letter-spacing:0.4px;border-radius:{radius};box-shadow:5px 5px 0 {shadow};{extra}'>{label}</a>"
+    )
+
+
+# 1 LOOKBOOK / fashion e-comm — hot pink + ice + charcoal — Lucky Wheel
+def art1():
+    return f"""<article style='max-width:980px;margin:0 auto;box-sizing:border-box;padding:0;background:#faf7f8;color:#161616;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.7;overflow:hidden'>
+<div style='padding:14px 18px;display:flex;align-items:center;justify-content:space-between;background:#161616'>
+<div style='display:flex;align-items:center;gap:10px'><img src='{LOGO}' alt='JAIHO777 logo' title='JAIHO777' style='height:30px;width:auto;display:block'><span style='color:#ffffff;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase'>JAIHO777 · LOOK</span></div>
+<span style='color:#161616;background:#ff2d55;padding:7px 12px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;border-radius:999px'>SPIN DROP</span>
+</div>
+<div style='display:flex;flex-wrap:wrap'>
+<div style='flex:1 1 320px;padding:clamp(22px,4vw,42px);box-sizing:border-box'>
+<p style='margin:0 0 10px;font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#ff2d55'>REWARD SPOTLIGHT</p>
+<h1 style='margin:0 0 14px;font-size:clamp(30px,5.2vw,46px);line-height:1.08;letter-spacing:-1px;color:#161616'>Your Lucky Moment on JAIHO777 Does Not Need a Boring Bonus Menu</h1>
+<p style='margin:0 0 16px;font-size:17px;color:#4a4a4a'>Exciting prizes on the Lucky Wheel are pulling Indian cash-game players who want a short, cinematic spin session — not another spreadsheet coupon.</p>
+<p style='margin:0'>{cta('SPIN THE OFFICIAL APP','#ff2d55','#ffffff','#9b1030','999px')}</p>
+</div>
+<figure style='flex:1 1 320px;margin:0;padding:0;background:#161616'>
+<img src='{IMG[0]}' alt='JAIHO777 lucky wheel with cash bonus deposit voucher prizes and spin button' title='JAIHO777 lucky wheel' style='width:100%;height:auto;display:block;margin:0'>
+<figcaption style='margin:0;padding:10px 14px;color:#cfcfcf;font-size:12px;background:#161616'>Campaign cue: cash, bonus, deposit voucher, special — give it a spin today.</figcaption>
+</figure>
+</div>
+<nav style='display:flex;flex-wrap:wrap;gap:12px;justify-content:center;padding:14px 12px;background:#ffffff;border-top:1px solid #eee;border-bottom:1px solid #eee'>
+<a href='#why-wheel' style='color:#ff2d55;text-decoration:none;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase'>WHY WHEEL</a>
+<a href='#how-to-play' style='color:#ff2d55;text-decoration:none;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase'>HOW TO PLAY</a>
+<a href='#faq-wheel' style='color:#ff2d55;text-decoration:none;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase'>FAQ</a>
+</nav>
+<div style='padding:clamp(18px,3vw,34px)'>
+<section id='why-wheel'>
+<h2 style='margin:0 0 10px;font-size:clamp(22px,3vw,28px);color:#161616'>Why Lucky Wheel energy feels fresher than static menus</h2>
+<p style='margin:0 0 14px;color:#333333'>Static bonuses are useful, but they rarely create a moment. The JAIHO777 Lucky Wheel is built for that moment: a bright SPIN center, prize segments, and a warrior-king invite that says your lucky moment starts here. For progressive Indian audiences in Mumbai, Hyderabad, and Kochi, that theater lands better than a flat percentage buried in fine print.</p>
+<p style='margin:0 0 14px;color:#333333'>Important honesty: exciting prizes do not equal guaranteed profit. Cash ₹77, bonus ₹200, deposit voucher, or special lanes are prize categories on a probability board. Real cash games and earning games still carry risk. Treat the wheel as entertainment with upside — never as a salary plan.</p>
+</section>
+<section id='how-to-play'>
+<h2 style='margin:0 0 10px;font-size:clamp(22px,3vw,28px);color:#161616'>A clean spin ritual for busy evenings</h2>
+<ul style='margin:0 0 16px;padding:0;list-style:none'>
+<li style='margin:0 0 10px;padding:14px 16px;background:#ffffff;border-left:5px solid #ff2d55;border-radius:0 16px 16px 0'><strong>1 · Install clean</strong> — only the official JAIHO777 APK linked here.</li>
+<li style='margin:0 0 10px;padding:14px 16px;background:#ffffff;border-left:5px solid #ff2d55;border-radius:0 16px 16px 0'><strong>2 · Read eligibility</strong> — check spin rules before the first tap.</li>
+<li style='margin:0 0 10px;padding:14px 16px;background:#ffffff;border-left:5px solid #ff2d55;border-radius:0 16px 16px 0'><strong>3 · Cap the vibe</strong> — fix rupees and minutes; UPI surplus only.</li>
+<li style='margin:0 0 0;padding:14px 16px;background:#ffffff;border-left:5px solid #ff2d55;border-radius:0 16px 16px 0'><strong>4 · Exit stylishly</strong> — one short session beats five tilted restarts.</li>
+</ul>
+<p style='margin:0 0 14px;color:#333333'>Hinglish truth: “Spin mazaa ke liye, recovery ke liye nahi.” If friends in a Delhi PG are watching, keep the session social and timed. Paytm, PhonePe, or Google Pay top-ups should never come from rent money. 24/7 support exists for account issues, not for chasing near-misses.</p>
+<p style='margin:0 0 14px;color:#333333'>Fashion-campaign energy works when the product respects the exit. JAIHO777’s wheel creative is loud on purpose. Your bankroll rules should stay quiet and firm. Screenshot terms. Avoid clone APKs. Never share OTPs with strangers promising free spins.</p>
+<p style='margin:0 0 14px;color:#333333'>Compared with deposit-only promos, the wheel wins on shareability and mood. Compared with careful planners, static bonuses may still feel safer. Many regulars do both: claim a structured boost, then treat Lucky Wheel as dessert. That hybrid keeps aspiration without pretending every segment will land on gold.</p>
+<p style='margin:0 0 14px;color:#333333'>If your group chat in Pune is already forwarding the wheel banner, reply with a plan not a dare: official install, fixed budget, one short spin block. Fashion-look energy is for vibes; your notes app is for limits. Players who keep that split enjoy Lucky Wheel longer than players who chase every near-miss like a homework assignment.</p>
+<p style='margin:0 0 14px;color:#333333'>Also remember KYC and withdrawal timing still matter after a fun spin night. Exciting prizes on marketing art do not bypass verification. Keep screenshots of eligibility. Ask 24/7 support only through official in-app paths. That boring professionalism is what makes a modern cash-game habit sustainable.</p>
+<p style='margin:0 0 18px'>{cta('DOWNLOAD & GIVE IT A SPIN','#161616','#ffffff','#ff2d55','999px')}</p>
+</section>
+<section id='faq-wheel'>
+<h2 style='margin:0 0 10px;font-size:clamp(22px,3vw,28px);color:#161616'>FAQ</h2>
+<div style='display:flex;flex-wrap:wrap;gap:10px'>
+<div style='flex:1 1 240px;padding:14px;background:#ffffff;border-radius:18px'><strong style='display:block;margin:0 0 6px'>Can I force a cash segment?</strong><span style='color:#444'>No. Spins are probability features.</span></div>
+<div style='flex:1 1 240px;padding:14px;background:#ffffff;border-radius:18px'><strong style='display:block;margin:0 0 6px'>Is the wheel always live?</strong><span style='color:#444'>Availability depends on the live event window in-app.</span></div>
+<div style='flex:1 1 240px;padding:14px;background:#ffffff;border-radius:18px'><strong style='display:block;margin:0 0 6px'>Where to install?</strong><span style='color:#444'>Only via the official APK button in this article.</span></div>
+</div>
+</section>
+</div>
+</article>"""
+
+
+# 2 SPORTS DIAGONAL — graphite + electric lime — Rank
+def art2():
+    return f"""<article style='max-width:980px;margin:0 auto;box-sizing:border-box;padding:0;background:#111418;color:#eef3f0;font-family:Impact,Haettenschweiler,Arial Black,sans-serif;overflow:hidden'>
+<div style='padding:12px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid #b8ff3c;font-family:Arial,Helvetica,sans-serif'>
+<div style='display:flex;align-items:center;gap:10px'><img src='{LOGO}' alt='JAIHO777 logo' title='JAIHO777' style='height:28px;width:auto;display:block'><span style='font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#b8ff3c'>JAIHO777 / RANK LIVE</span></div>
+<span style='background:#b8ff3c;color:#111418;padding:6px 10px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;clip-path:polygon(8% 0,100% 0,92% 100%,0 100%)'>AIM HIGH</span>
+</div>
+<div style='padding:clamp(20px,4vw,40px) 16px 10px;background:linear-gradient(135deg,#111418 0%,#1a2420 55%,#101820 100%)'>
+<p style='margin:0 0 8px;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#b8ff3c'>FEATURE STORY · CASH REWARDS</p>
+<h1 style='margin:0 0 12px;font-size:clamp(32px,6vw,54px);line-height:0.98;text-transform:uppercase;letter-spacing:0.5px;color:#ffffff'>Every Rank on JAIHO777 Opens a New Lane — Are You Playing the Board or Just the Hand?</h1>
+<p style='margin:0 0 16px;max-width:720px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.65;font-weight:400;color:#c9d6cc'>Compete for special cash rewards with a climb mindset: aim high, finish strong, and keep the bankroll adult.</p>
+<p style='margin:0 0 20px'>{cta('JOIN THE RANK RACE','#b8ff3c','#111418','#5a8a12','0','clip-path:polygon(0 0,96% 0,100% 100%,4% 100%);')}</p>
+</div>
+<figure style='margin:0;padding:0;border-top:3px solid #b8ff3c;border-bottom:3px solid #b8ff3c'>
+<img src='{IMG[1]}' alt='JAIHO777 rank rewards podium with gold silver bronze trophies and cash reward banners' title='JAIHO777 rank opportunities' style='width:100%;height:auto;display:block;margin:0'>
+<figcaption style='margin:0;padding:10px 14px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#9fb3a4;background:#0c1013'>Every rank brings new opportunities — compete for special cash rewards.</figcaption>
+</figure>
+<nav style='display:flex;flex-wrap:wrap;gap:14px;justify-content:center;padding:12px;font-family:Arial,Helvetica,sans-serif;background:#0c1013'>
+<a href='#board-logic' style='color:#b8ff3c;text-decoration:none;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase'>BOARD LOGIC</a>
+<a href='#climb-plan' style='color:#b8ff3c;text-decoration:none;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase'>CLIMB PLAN</a>
+<a href='#faq-rank' style='color:#b8ff3c;text-decoration:none;font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase'>FAQ</a>
+</nav>
+<div style='padding:clamp(18px,3vw,32px) 16px 36px;font-family:Arial,Helvetica,sans-serif;font-weight:400;line-height:1.7'>
+<section id='board-logic'>
+<h2 style='margin:0 0 10px;font-family:Impact,Haettenschweiler,Arial Black,sans-serif;font-size:clamp(24px,3.5vw,32px);text-transform:uppercase;color:#b8ff3c;letter-spacing:1px'>Board logic for Indian real cash game nights</h2>
+<p style='margin:0 0 14px;color:#d7e3db'>Indian players already live inside standings — IPL tables, fantasy points, college fest boards. JAIHO777’s rank creative leans into that instinct: podium energy, king invitation, gift boxes, and the line that every rank brings new opportunities. The product idea is simple. Eligible play feeds a visible climb. Higher bands can unlock special cash-reward lanes during the live window.</p>
+<p style='margin:0 0 14px;color:#d7e3db'>That is competition plus extras — not a promise that finishing strong prints guaranteed profit. Outcomes vary. Responsible play still means surplus funds only, session timers, and no OTP sharing with strangers. Instant withdrawal expectations stay realistic against KYC.</p>
+</section>
+<section id='climb-plan'>
+<h2 style='margin:0 0 10px;font-family:Impact,Haettenschweiler,Arial Black,sans-serif;font-size:clamp(24px,3.5vw,32px);text-transform:uppercase;color:#b8ff3c;letter-spacing:1px'>Climb plan that does not look ancient</h2>
+<ul style='margin:0 0 16px;padding:0;list-style:none'>
+<li style='margin:0 0 8px;padding:12px 14px;background:#1a2220;border-left:4px solid #b8ff3c'><strong style='color:#b8ff3c'>GOLD LANE</strong> — consistency over ego stakes.</li>
+<li style='margin:0 0 8px;padding:12px 14px;background:#1a2220;border-left:4px solid #b8ff3c'><strong style='color:#b8ff3c'>SILVER GRIND</strong> — steady eligible formats across short blocks.</li>
+<li style='margin:0 0 0;padding:12px 14px;background:#1a2220;border-left:4px solid #b8ff3c'><strong style='color:#b8ff3c'>BRONZE START</strong> — learn rules, then chase the board.</li>
+</ul>
+<p style='margin:0 0 14px;color:#d7e3db'>Hinglish: “Rank improve karna hai, paise udaane nahi.” A Bengaluru flat after office can host a 45-minute sprint with two friends comparing boards. That social heat is modern. Panic farming is old. Use UPI / Paytm / PhonePe / Google Pay only inside a pre-written entertainment amount.</p>
+<p style='margin:0 0 14px;color:#d7e3db'>If the climb stalls, switch to learning mode instead of doubling. Keep a note of yesterday’s band and today’s target. Tiny tracking beats blind aggression. Official APK only — clone files do not belong on a rank night.</p>
+<p style='margin:0 0 14px;color:#d7e3db'>Finish strong means ending while you still like the session. The podium art will wait. Your discipline is harder to rebuild after a messy chase. Treat special cash rewards as gravy on top of clean decisions, never as a reason to ignore stop-loss.</p>
+<p style='margin:0 0 14px;color:#d7e3db'>Search interest around rank races in India often mixes FOMO with distrust. People ask whether boards are real and whether rewards credit cleanly. The adult answer is process: read the live panel, play eligible formats only, and never buy fake boost services. A clean climb on JAIHO777 should feel like sport — timed, scored, and finished — not like an all-night argument with your future self.</p>
+<p style='margin:0 0 14px;color:#d7e3db'>Tier-2 city players with shorter free windows can still compete. Use constraint as a feature: one focused block after dinner can beat three distracted hours. End on time. Compare ranks with friends without shaming small withdrawals. That culture keeps the board modern instead of toxic.</p>
+<p style='margin:0 0 14px;color:#d7e3db'>Aim high is marketing. Finish strong is personal policy. Write both into your notes before you open JAIHO777 tonight.</p>
+<p style='margin:0 0 18px'>{cta('GET JAIHO777 & CLIMB','#ffffff','#111418','#b8ff3c','0')}</p>
+</section>
+<section id='faq-rank'>
+<h2 style='margin:0 0 10px;font-family:Impact,Haettenschweiler,Arial Black,sans-serif;font-size:clamp(24px,3.5vw,32px);text-transform:uppercase;color:#b8ff3c;letter-spacing:1px'>FAQ</h2>
+<p style='margin:0 0 6px;font-weight:800;color:#ffffff'>Do rank rewards guarantee profit?</p>
+<p style='margin:0 0 12px;color:#d7e3db'>No. They are incentive lanes. Cash games can still lose.</p>
+<p style='margin:0 0 6px;font-weight:800;color:#ffffff'>Daily or weekly board?</p>
+<p style='margin:0 0 12px;color:#d7e3db'>Check the live window in-app after install.</p>
+<p style='margin:0 0 6px;font-weight:800;color:#ffffff'>Safe download?</p>
+<p style='margin:0 0 0;color:#d7e3db'>Only the official JAIHO777 CTA in this story.</p>
+</section>
+</div>
+</article>"""
+
+
+# 3 EVENT MICROSITE — sunset coral + deep indigo — Final Day bonus
+def art3():
+    return f"""<article style='max-width:960px;margin:0 auto;box-sizing:border-box;padding:clamp(16px,3.5vw,34px);background:linear-gradient(180deg,#1a1033 0%,#2a1748 42%,#ff6b35 160%);color:#fff7f2;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.7'>
+<header style='display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:0 0 16px;margin:0 0 18px;border-bottom:1px solid rgba(255,255,255,0.2)'>
+<div style='display:flex;align-items:center;gap:10px'><img src='{LOGO}' alt='JAIHO777 logo' title='JAIHO777' style='height:30px;width:auto;display:block'><span style='font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#ffd0bf'>JAIHO777 / FINAL DAY DESK</span></div>
+<p style='margin:0;padding:8px 12px;background:#ff6b35;color:#1a1033;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;border-radius:8px 0 8px 0'>DONT MISS</p>
+</header>
+<p style='margin:0 0 8px;text-align:center;font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#ffb08f'>EVENT COVERAGE · LAST WINDOW</p>
+<h1 style='margin:0 0 12px;text-align:center;font-size:clamp(30px,5.4vw,48px);line-height:1.1;color:#ffffff'>Final Day on JAIHO777: The Bonus Window Is Closing — Here Is What Still Matters</h1>
+<p style='margin:0 auto 16px;max-width:720px;text-align:center;color:#ffe2d4'>New-member cash framing and an extra deposit boost are the headlines. The smart move is a calm claim checklist, not a panic top-up under fireworks.</p>
+<p style='margin:0 0 22px;text-align:center'>{cta('LOG IN & CLAIM PATH','#ff6b35','#1a1033','#a33a14','12px')}</p>
+<figure style='max-width:720px;margin:0 auto 24px;padding:8px;background:rgba(255,255,255,0.08);border-radius:20px;box-sizing:border-box'>
+<img src='{IMG[2]}' alt='JAIHO777 final day bonus banner with new member cash offer and 15 percent extra deposit bonus' title='JAIHO777 final day bonus' style='width:100%;height:auto;display:block;margin:0;border-radius:14px'>
+<figcaption style='margin:0;padding:10px 8px 2px;font-size:12px;color:#ffd0bf;text-align:center'>Final day creative: ₹15–₹175 new-member band + 15% extra deposit bonus cues.</figcaption>
+</figure>
+<nav style='display:flex;flex-wrap:wrap;gap:12px;justify-content:center;padding:10px 0 20px;margin:0 0 8px'>
+<a href='#whats-live' style='color:#ffffff;background:rgba(255,107,53,0.25);padding:8px 12px;border-radius:999px;text-decoration:none;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase'>WHAT IS LIVE</a>
+<a href='#checklist' style='color:#ffffff;background:rgba(255,107,53,0.25);padding:8px 12px;border-radius:999px;text-decoration:none;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase'>CHECKLIST</a>
+<a href='#faq-final' style='color:#ffffff;background:rgba(255,107,53,0.25);padding:8px 12px;border-radius:999px;text-decoration:none;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase'>FAQ</a>
+</nav>
+<section id='whats-live'>
+<h2 style='margin:0 0 10px;font-size:clamp(22px,3vw,28px);color:#ffb08f'>What the final-day banner is selling</h2>
+<p style='margin:0 0 14px;color:#ffe9df'>Urgency marketing works in India because festivals already train people for deadlines. JAIHO777’s final-day creative dials that up with wolf energy, diyas, fireworks, and a blunt don’t-miss-your-bonus line. Under the heat, the concrete offers are a new-member cash range around ₹15–₹175 and a plus 15% extra deposit bonus lane.</p>
+<p style='margin:0 0 14px;color:#ffe9df'>Neither number guarantees winnings. Real cash games remain risky. Surprise gifts waiting is mood language. Your checklist should stay boring and strong: official APK, live timer, eligibility, surplus budget, hard stop.</p>
+</section>
+<section id='checklist'>
+<h2 style='margin:0 0 10px;font-size:clamp(22px,3vw,28px);color:#ffb08f'>Last-window checklist that still feels modern</h2>
+<ul style='margin:0 0 16px;padding:0;list-style:none'>
+<li style='margin:0 0 10px;padding:14px;background:rgba(255,255,255,0.08);border-radius:16px'><strong>Install clean</strong> — only the JAIHO777 package from this page.</li>
+<li style='margin:0 0 10px;padding:14px;background:rgba(255,255,255,0.08);border-radius:16px'><strong>Confirm live</strong> — timer, reward panel, deposit boost rules in-app.</li>
+<li style='margin:0 0 10px;padding:14px;background:rgba(255,255,255,0.08);border-radius:16px'><strong>Cap funds</strong> — UPI / Paytm / PhonePe / Google Pay from surplus only.</li>
+<li style='margin:0 0 0;padding:14px;background:rgba(255,255,255,0.08);border-radius:16px'><strong>Exit kindly</strong> — when the plan ends, log out even if FOMO shouts.</li>
+</ul>
+<p style='margin:0 0 14px;color:#ffe9df'>Hinglish: “Last chance hai, lekin dimaag on rakhna.” In Ahmedabad family chats an uncle still sends caution stickers — listen. In Delhi hostels the forward storm is loud — filter. If you already have an account, check whether new-member cash still applies. If you are new, finish profile steps early so verification lag does not eat the window.</p>
+<p style='margin:0 0 14px;color:#ffe9df'>Trust beats fireworks: clear reward history, 24/7 support tone, KYC-aware withdrawals. Block anyone asking for OTP via secret bonus DMs. Official campaigns push you into the app, not into leaking banking life.</p>
+<p style='margin:0 0 14px;color:#ffe9df'>Think of the bonus like the last festival sweet on the tray. Take one thoughtfully. Do not finish the tray to prove celebration. Missing a closing offer is cheaper than a tilted chase that ruins tomorrow morning.</p>
+<p style='margin:0 0 14px;color:#ffe9df'>Modern event pages should feel fast, colorful, and honest. This final-day desk keeps the coral heat for urgency while the checklist stays adult. If the banner created the desire to deposit more than your weekly plan, wait. Desire that survives a night of sleep is safer than desire born from a flaming wolf graphic and lightning CTAs.</p>
+<p style='margin:0 0 14px;color:#ffe9df'>When the window closes, stop hunting mirrors for leftover codes. Later JAIHO777 offers may appear with different numbers. Tonight is a calendar fact — useful if you were already planning to try the app, dangerous if you are chasing losses from earlier in the week.</p>
+<p style='margin:0 0 14px;color:#ffe9df'>Log in and claim today can be a clean sentence if your budget was already approved. If it is not approved, the brighter choice is dinner with family and a fresh look tomorrow — without shame, without secret APKs, without OTP scams dressed as surprise gifts.</p>
+<p style='margin:0 0 18px;text-align:center'>{cta('CLAIM BEFORE CLOSE','#ffffff','#1a1033','#ff6b35','999px')}</p>
+</section>
+<section id='faq-final'>
+<h2 style='margin:0 0 10px;font-size:clamp(22px,3vw,28px);color:#ffb08f'>FAQ</h2>
+<p style='margin:0 0 6px;font-weight:800;color:#ffffff'>Is it really the final day?</p>
+<p style='margin:0 0 12px;color:#ffe9df'>The creative says so. Confirm the live countdown after install.</p>
+<p style='margin:0 0 6px;font-weight:800;color:#ffffff'>Is ₹15–₹175 automatic?</p>
+<p style='margin:0 0 12px;color:#ffe9df'>Framed for new members and rule-dependent.</p>
+<p style='margin:0 0 6px;font-weight:800;color:#ffffff'>Does 15% extra mean guaranteed profit?</p>
+<p style='margin:0 0 0;color:#ffe9df'>No. It is deposit-side value, not certainty.</p>
+</section>
+</article>"""
+
+
+# 4 PLAYFUL ARCADE / treasure map — ocean teal + coral — Lucky Gullak daily
+def art4():
+    return f"""<article style='max-width:960px;margin:0 auto;box-sizing:border-box;padding:0;background:#e8f8fb;color:#123 semi;font-family:Trebuchet MS,Arial,Helvetica,sans-serif;font-size:16px;line-height:1.7;overflow:hidden'>
+""".replace('color:#123 semi', 'color:#12343d') + f"""
+<div style='padding:14px 16px;display:flex;align-items:center;justify-content:space-between;background:#023047'>
+<div style='display:flex;align-items:center;gap:10px'><img src='{LOGO}' alt='JAIHO777 logo' title='JAIHO777' style='height:30px;width:auto;display:block;background:#ffffff;border-radius:8px;padding:2px'><span style='color:#8ecae6;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase'>JAIHO777 / DAILY DROP</span></div>
+<span style='background:#ff6b6b;color:#ffffff;padding:8px 12px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;border-radius:999px'>LUCKY GULLAK</span>
+</div>
+<div style='padding:clamp(20px,4vw,36px) 16px 8px;text-align:center;background:radial-gradient(circle at top,#ffffff 0%,#e8f8fb 70%)'>
+<p style='margin:0 0 8px;font-size:12px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#00b4d8'>MEMBER RITUAL · FREE CASH REWARDS ENERGY</p>
+<h1 style='margin:0 0 12px;font-size:clamp(30px,5.2vw,46px);line-height:1.1;color:#023047'>Lucky Gullak on JAIHO777: Your Daily Bonus Is Ready — Open It Like a Treasure, Not a Trap</h1>
+<p style='margin:0 auto 16px;max-width:700px;color:#355864'>A playful daily-drop feature for Indian earning-game fans who want free cash reward vibes without turning mornings into reckless top-up spirals.</p>
+<p style='margin:0 0 18px'>{cta('OPEN TODAY ON APP','#00b4d8','#023047','#027793','999px')}</p>
+</div>
+<figure style='max-width:740px;margin:0 auto 22px;padding:10px;background:#023047;border-radius:24px;box-sizing:border-box'>
+<img src='{IMG[3]}' alt='JAIHO777 Lucky Gullak daily bonus pirate treasure scene with free cash rewards' title='JAIHO777 Lucky Gullak daily bonus' style='width:100%;height:auto;display:block;margin:0;border-radius:16px'>
+<figcaption style='margin:0;padding:10px 6px 2px;color:#8ecae6;font-size:12px;text-align:center'>Daily bonus creative: Lucky Gullak · free cash rewards · open today and reveal your gift.</figcaption>
+</figure>
+<nav style='display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:0 12px 18px'>
+<a href='#what-gullak' style='text-decoration:none;background:#ffffff;color:#023047;padding:8px 12px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;border:2px solid #00b4d8'>WHAT IS GULLAK</a>
+<a href='#daily-habit' style='text-decoration:none;background:#ffffff;color:#023047;padding:8px 12px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;border:2px solid #00b4d8'>DAILY HABIT</a>
+<a href='#faq-gullak' style='text-decoration:none;background:#ffffff;color:#023047;padding:8px 12px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;border:2px solid #00b4d8'>FAQ</a>
+</nav>
+<div style='padding:0 16px 34px'>
+<section id='what-gullak'>
+<h2 style='margin:0 0 10px;font-size:clamp(22px,3vw,28px);color:#023047'>What Lucky Gullak is signaling</h2>
+<p style='margin:0 0 14px;color:#2b4a54'>A gullak is culturally familiar across India — a savings pot, a small ritual, a daily drop of coins. JAIHO777’s Lucky Gullak creative remixes that memory into a pirate-cabin treasure scene: pink octopus energy, overflowing pot, rupee coins, and a banner that says your daily bonus is ready. It feels modern and playful, not stiff brochure heritage.</p>
+<p style='margin:0 0 14px;color:#2b4a54'>Free cash rewards language is aspirational. It is not a promise that every morning prints profit. Real cash games still vary. Open the gift after you set limits. Reveal does not mean abandon the stop-loss.</p>
+</section>
+<section id='daily-habit'>
+<h2 style='margin:0 0 10px;font-size:clamp(22px,3vw,28px);color:#023047'>Build a daily habit that stays fun</h2>
+<ul style='margin:0 0 16px;padding:0;list-style:none'>
+<li style='margin:0 0 10px;padding:14px;background:#ffffff;border-radius:18px;border:2px dashed #00b4d8'><strong style='color:#ff6b6b'>Morning peek</strong> — check the daily drop after chai, claim only if eligible.</li>
+<li style='margin:0 0 10px;padding:14px;background:#ffffff;border-radius:18px;border:2px dashed #00b4d8'><strong style='color:#ff6b6b'>Tiny session</strong> — optional short play, never a recovery mission.</li>
+<li style='margin:0 0 0;padding:14px;background:#ffffff;border-radius:18px;border:2px dashed #00b4d8'><strong style='color:#ff6b6b'>Clean install</strong> — official APK only; skip random treasure mirrors.</li>
+</ul>
+<p style='margin:0 0 14px;color:#2b4a54'>Hinglish: “Bonus ready hai, dimaag bhi ready hona chahiye.” Players in Goa weekend mode and Bengaluru weekday mode can share the same ritual: open, claim, decide. UPI / Paytm / PhonePe / Google Pay stay useful inside surplus entertainment money. 24/7 support helps with account friction; it cannot rewrite variance.</p>
+<p style='margin:0 0 14px;color:#2b4a54'>Compared with weekly mega festivals, daily gullak energy wins on cadence. Compared with high-pressure final-day banners, it wins on softness. Keep it that way. If a day feels stressful, skip the lobby and keep the greeting. The pot will refresh; your peace of mind is harder to farm back.</p>
+<p style='margin:0 0 14px;color:#2b4a54'>Parents and older cousins in family chats may ask what Lucky Gullak is. Explain it as a daily reward feature inside a real cash game app — entertainment with rules, age gates, and no guaranteed outcomes. That sentence travels better than hype screenshots alone.</p>
+<p style='margin:0 0 14px;color:#2b4a54'>Keep the pirate treasure aesthetic for fun, not for fantasy math. Opening today and revealing a gift should feel like checking a cheerful notification — not like boarding a ship that never docks. If the daily drop starts pressuring you to top up every morning, pause the ritual for a week. Cadence is healthy only when you can skip a day without guilt.</p>
+<p style='margin:0 0 14px;color:#2b4a54'>Official install, readable reward panel, surplus-only payments, and a written stop: that is the modern gullak method. Everything else is costume. Wear the costume lightly. Protect the bankroll heavily. Keep the ritual cheerful and skip any day that feels forced.</p>
+<p style='margin:0 0 18px;text-align:center'>{cta('REVEAL ON JAIHO777','#ff6b6b','#ffffff','#023047','18px')}</p>
+</section>
+<section id='faq-gullak'>
+<h2 style='margin:0 0 10px;font-size:clamp(22px,3vw,28px);color:#023047'>FAQ</h2>
+<div style='display:flex;flex-direction:column;gap:10px'>
+<div style='padding:12px 14px;background:#ffffff;border-radius:14px'><strong style='display:block;margin:0 0 4px;color:#023047'>Is the daily bonus automatic forever?</strong><span style='color:#355864'>No. Check live eligibility and timers in-app each day.</span></div>
+<div style='padding:12px 14px;background:#ffffff;border-radius:14px'><strong style='display:block;margin:0 0 4px;color:#023047'>Does free cash rewards mean guaranteed winnings?</strong><span style='color:#355864'>No. Promotional value is not a profit promise.</span></div>
+<div style='padding:12px 14px;background:#ffffff;border-radius:14px'><strong style='display:block;margin:0 0 4px;color:#023047'>Where should I download?</strong><span style='color:#355864'>Use the official JAIHO777 APK button on this page only.</span></div>
+</div>
+</section>
+</div>
+</article>"""
+
+
+META = [
+    {
+        'file': '01-lucky-wheel.html',
+        'title': 'Your Lucky Moment on JAIHO777 Does Not Need a Boring Bonus Menu',
+        'keywords': 'lucky wheel spin India, exciting prize segments, short session cash games, probability reward feature',
+        'description': 'Why JAIHO777 Lucky Wheel feels fresher than static coupons—spin ritual tips, prize-lane honesty, and a clean official install path.',
+        'fn': art1,
+    },
+    {
+        'file': '02-rank-opportunities.html',
+        'title': 'Every Rank on JAIHO777 Opens a New Lane — Are You Playing the Board or Just the Hand?',
+        'keywords': 'special cash rewards climb, rank race real cash games, aim high finish strong, eligible play leaderboard',
+        'description': 'JAIHO777 rank nights explained: how special cash reward lanes work, a modern climb plan, and why finishing strong beats blind farming.',
+        'fn': art2,
+    },
+    {
+        'file': '03-final-day-bonus.html',
+        'title': 'Final Day on JAIHO777: The Bonus Window Is Closing — Here Is What Still Matters',
+        'keywords': 'final day deposit boost, new member cash range, last window checklist India, festive login urgency',
+        'description': 'Final-day JAIHO777 bonus coverage: ₹15–₹175 cues, 15% extra deposit framing, and a calm checklist before FOMO takes over.',
+        'fn': art3,
+    },
+    {
+        'file': '04-lucky-gullak-daily.html',
+        'title': 'Lucky Gullak on JAIHO777: Your Daily Bonus Is Ready — Open It Like a Treasure, Not a Trap',
+        'keywords': 'daily bonus gullak, free cash rewards habit, morning claim ritual, playful earning games India',
+        'description': 'Lucky Gullak daily drop on JAIHO777 decoded—build a fun morning claim habit without turning free cash reward energy into reckless top-ups.',
+        'fn': art4,
+    },
+]
+
+
+def main():
+    ROOT.mkdir(parents=True, exist_ok=True)
+    PUB.mkdir(parents=True, exist_ok=True)
+    (PUB / 'per-artikel').mkdir(parents=True, exist_ok=True)
+    all_parts = ['JAIHO777 BATCH 07 — ADMINSAFEBET (SITUS BARU)', '', f'APK: {APK}', '', 'Format tiap artikel: tabel Title/Keywords/Description lalu HTML inline penuh (tanpa tag style).', '']
+    meta_bits = []
+    for i, m in enumerate(META, 1):
+        html = m['fn']().strip()
+        while '\n\n\n' in html:
+            html = html.replace('\n\n\n', '\n\n')
+        ok(html, m['file'])
+        (ROOT / m['file']).write_text(html + '\n', encoding='utf-8')
+        table = (
+            '| Article Title | Keywords | Description |\n'
+            '|---|---|---|\n'
+            f"| {m['title']} | {m['keywords']} | {m['description']} |"
+        )
+        block = f'{table}\n\n{html}\n'
+        (PUB / 'per-artikel' / f'artikel-{i:02d}.txt').write_text(block, encoding='utf-8')
+        all_parts += ['=' * 72, f'ARTIKEL {i}', '=' * 72, '', table, '', html, '']
+        meta_bits.append(f'ARTIKEL {i}\n{table}\n')
+    (PUB / 'COPY-PASTE-SEMUA-ARTIKEL.txt').write_text('\n'.join(all_parts), encoding='utf-8')
+    (ROOT / 'METADATA.txt').write_text('\n'.join(meta_bits), encoding='utf-8')
+    (ROOT / 'README.md').write_text(
+        '# Batch 07 — Fresh inline articles\n\n'
+        'Copy-paste pack: `../../publish/batch-07/`\n\n'
+        '4 artikel (sesuai 4 gambar). Full inline CSS. Title/Keywords/Description dibedakan.\n',
+        encoding='utf-8',
+    )
+    (PUB / 'README.md').write_text(
+        '# Batch 07 Copy Pack\n\n'
+        '- `COPY-PASTE-SEMUA-ARTIKEL.txt`\n'
+        '- `per-artikel/artikel-01.txt` ... `artikel-04.txt`\n',
+        encoding='utf-8',
+    )
+    print('DONE')
+
+
+if __name__ == '__main__':
+    main()
