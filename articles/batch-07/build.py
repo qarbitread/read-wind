@@ -244,7 +244,7 @@ def art4():
 <p style='margin:0 0 14px;color:#2b4a54'>Compared with weekly mega festivals, daily gullak energy wins on cadence. Compared with high-pressure final-day banners, it wins on softness. Keep it that way. If a day feels stressful, skip the lobby and keep the greeting. The pot will refresh; your peace of mind is harder to farm back.</p>
 <p style='margin:0 0 14px;color:#2b4a54'>Parents and older cousins in family chats may ask what Lucky Gullak is. Explain it as a daily reward feature inside a real cash game app — entertainment with rules, age gates, and no guaranteed outcomes. That sentence travels better than hype screenshots alone.</p>
 <p style='margin:0 0 14px;color:#2b4a54'>Keep the pirate treasure aesthetic for fun, not for fantasy math. Opening today and revealing a gift should feel like checking a cheerful notification — not like boarding a ship that never docks. If the daily drop starts pressuring you to top up every morning, pause the ritual for a week. Cadence is healthy only when you can skip a day without guilt.</p>
-<p style='margin:0 0 14px;color:#2b4a54'>Official install, readable reward panel, surplus-only payments, and a written stop: that is the modern gullak method. Everything else is costume. Wear the costume lightly. Protect the bankroll heavily.</p>
+<p style='margin:0 0 14px;color:#2b4a54'>Official install, readable reward panel, surplus-only payments, and a written stop: that is the modern gullak method. Everything else is costume. Wear the costume lightly. Protect the bankroll heavily. Keep the ritual cheerful and skip any day that feels forced.</p>
 <p style='margin:0 0 18px;text-align:center'>{cta('REVEAL ON JAIHO777','#ff6b6b','#ffffff','#023047','18px')}</p>
 </section>
 <section id='faq-gullak'>
