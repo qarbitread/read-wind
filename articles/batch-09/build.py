@@ -8,7 +8,7 @@ PUB = ROOT.parent.parent / 'publish' / 'batch-09'
 LOGO = 'https://www.prosafeimg.com/uploads/20260731/6a6c6e378c7f6.png'
 APK = 'https://d3iha5lcurdryc.cloudfront.net/jaiho777_119CBDGML2F.apk'
 IMG = [
-    'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjiTgKqGijA7FzBpM7XQ1WGSreZ0wpuX2PFTjRFr11wy5pJGiAmB5n77xDHR6HYZgtHTLc35pOkmwU9EDKhkAmItDXcg9uKHCAzkJA94ywjbfHdAoonCm5giNGDYkXVyyx-ev6gxh8UQcUVNb5Xhee7ZRoyvraxnvR8Mnt1-c1lYF1w1w9fdo66XSVb1Wol/s320/p156.6_700x500.webp',
+    'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjiTgKqGijA7FzBpM7XQ1WGSreZ0wpuX2PFTjRFr11wy5pJGiAmB5n77xDHR6HYZgtHTLc35pOkmwU9EDKhkAmItDXcg9uKHCAzkJA94ywjbfHdAoonCm5giNGDYkXVyyx-ev6gxh8UQcUVNb5Xhee7ZRoyvraxnvR8Mnt1-c1lYF1w1w9fdo66XSVb1Wol/s700/p156.6_700x500.webp',
     'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjB9yc6ap1H819WFGJEmpzh4lduzVBEnFQmCwdFgQof9KkPwkOyb0CVNETFdm3iJROJ3aUiyIDsrGrqjiDh7gYM7YTO-dXHYdIpE0Cp36jlINCtnkYL9NMsU6PZatrEq9k83Enar2HoCjKLWI68M4I-ztvZKQsfwy9-z3EMFtvQ4ynXhlNaYlS9vmp9oGI7/s700/P157.2_850x1280_700x500.webp',
     'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh3NTLt4eBtOy4lhRlrdxqYVrVULvZoroGM4RyvCZCv2mcqk-7DxDwNGCQUg-o7qWrIXAcGBO3RDVc9kFGCFkI1tzbAiuJdwp7daEb9fL7zhVj71x7pWflqfLVxQUuyT1aY1WhfnyVptZxI_Acolg365jIariIGFFmYRqKiE9x5olPjZ1ZQ_Ti86HECulud/s700/P157.5_700x500.webp',
     'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg_BGxH02stU3r3TtnYLoc9py6oxBuESYIpPJdORbPNs8cu7DBBisBo1qKvUxQjOYPlFbcKhVSyTjdMirncfl6BpLpSuR2EDPSCAW0-AkAF41VUmNCTeRWijve-OecnzgwLJ2YPYZEt2k3aWhPhG7OzGS4Q5iqQYkhKQjJfIdj84bzQxc6STMYaYkLJJgV_/s700/P157.2_700x500.webp',
