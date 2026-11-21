@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Copy All Links — JAIHO777 WA</title>
+  <style>
+    :root {
+      --bg: #07140f;
+      --card: #0e241b;
+      --ink: #f4fff8;
+      --muted: #9fb gar;
+      --green: #19d46a;
+      --line: rgba(255,255,255,.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+      background: radial-gradient(1200px 600px at 50% -10%, #143828, var(--bg));
+      color: var(--ink);
+      padding: 1.25rem;
+    }
+    main {
+      width: min(720px, 100%);
+      margin: 0 auto;
+      display: grid;
+      gap: 1rem;
+    }
+    h1 { margin: 0; font-size: 1.35rem; }
+    p { margin: 0; color: rgba(244,255,248,.72); line-height: 1.5; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      padding: 1rem;
+      display: grid;
+      gap: .85rem;
+    }
+    label { font-size: .85rem; color: rgba(244,255,248,.7); }
+    input, textarea {
+      width: 100%;
+      border-radius: .7rem;
+      border: 1px solid var(--line);
+      background: #081810;
+      color: var(--ink);
+      padding: .75rem .85rem;
+      font: inherit;
+    }
+    textarea { min-height: 140px; resize: vertical; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+    @media (max-width: 640px) { .row { grid-template-columns: 1fr; } }
+    button {
+      appearance: none;
+      border: 0;
+      border-radius: .8rem;
+      padding: .95rem 1rem;
+      font-weight: 800;
+      letter-spacing: .03em;
+      cursor: pointer;
+      background: var(--green);
+      color: #04160f;
+      font-size: 1rem;
+    }
+    button.secondary {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid rgba(25,212,106,.45);
+    }
+    .actions { display: grid; gap: .65rem; grid-template-columns: 1fr 1fr; }
+    @media (max-width: 640px) { .actions { grid-template-columns: 1fr; } }
+    .status {
+      min-height: 1.25rem;
+      font-size: .9rem;
+      color: var(--green);
+      font-weight: 700;
+    }
+    .hint { font-size: .82rem; color: rgba(244,255,248,.55); }
+    code { color: #9dffc4; }
+    ul { margin: 0; padding-left: 1.1rem; color: rgba(244,255,248,.78); }
+  </style>
+</head>
+<body>
+  <main>
+    <div>
+      <h1>Copy All Links — sekali klik</h1>
+      <p>Update terakhir: preview UPI / sign-up bonus. Ada query <code>?v=</code> supaya WhatsApp tidak pakai cache lama.</p>
+    </div>
+
+    <section class="card">
+      <div class="row">
+        <div>
+          <label for="prefix">Prefix subdomain</label>
+          <input id="prefix" value="a" />
+        </div>
+        <div>
+          <label for="count">Jumlah link</label>
+          <input id="count" type="number" min="1" max="50" value="10" />
+        </div>
+      </div>
+      <div>
+        <label for="domain">Domain</label>
+        <input id="domain" value="jaiho777wa.com" />
+      </div>
+      <div>
+        <label for="message">Teks blast (opsional, ikut ter-copy di atas link)</label>
+        <textarea id="message">UPI Accepted | ₹15–₹17 Sign-Up Bonus
+New members get ₹15–₹17 on sign-up. Referral agents earn ₹7 for each new member who signs up through their link.</textarea>
+      </div>
+      <div class="actions">
+        <button id="copyAll" type="button">COPY ALL LINK</button>
+        <button id="copyLinksOnly" class="secondary" type="button">Copy link saja</button>
+      </div>
+      <div class="status" id="status" aria-live="polite"></div>
+      <p class="hint">Contoh output: <code>https://a1.jaiho777wa.com/?v=20261121</code> … <code>a10</code></p>
+    </section>
+
+    <section class="card">
+      <label>Preview list</label>
+      <ul id="preview"></ul>
+    </section>
+  </main>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const bust = () => {
+      const d = new Date();
+      const pad = (n) => String(n).padStart(2, '0');
+      return `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}${pad(d.getHours())}${pad(d.getMinutes())}`;
+    };
+
+    function buildLinks() {
+      const prefix = ($('prefix').value || 'a').trim();
+      const domain = ($('domain').value || 'jaiho777wa.com').trim().replace(/^https?:\/\//, '').replace(/\/$/, '');
+      const count = Math.max(1, Math.min(50, Number($('count').value) || 10));
+      const v = bust();
+      const links = [];
+      for (let i = 1; i <= count; i += 1) {
+        links.push(`https://${prefix}${i}.${domain}/?v=${v}`);
+      }
+      return links;
+    }
+
+    function refreshPreview() {
+      const links = buildLinks();
+      $('preview').innerHTML = links.map((l) => `<li><code>${l}</code></li>`).join('');
+      return links;
+    }
+
+    async function copyText(text, okMsg) {
+      try {
+        await navigator.clipboard.writeText(text);
+        $('status').textContent = okMsg;
+      } catch (err) {
+        const area = document.createElement('textarea');
+        area.value = text;
+        document.body.appendChild(area);
+        area.select();
+        document.execCommand('copy');
+        area.remove();
+        $('status').textContent = okMsg + ' (fallback)';
+      }
+    }
+
+    $('copyAll').addEventListener('click', () => {
+      const links = refreshPreview();
+      const msg = $('message').value.trim();
+      const payload = msg ? `${msg}\n\n${links.join('\n')}` : links.join('\n');
+      copyText(payload, `Tersalin ${links.length} link + teks blast`);
+    });
+
+    $('copyLinksOnly').addEventListener('click', () => {
+      const links = refreshPreview();
+      copyText(links.join('\n'), `Tersalin ${links.length} link`);
+    });
+
+    ['prefix', 'count', 'domain'].forEach((id) => {
+      $(id).addEventListener('input', refreshPreview);
+    });
+
+    refreshPreview();
+  </script>
+</body>
+</html>
