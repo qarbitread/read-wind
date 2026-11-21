@@ -9,7 +9,12 @@ import { collectAttribution } from '../src/server/attribution.mjs';
 const site = JSON.parse(await readFile(new URL('../config/site.json', import.meta.url)));
 const actualRelease = JSON.parse(await readFile(new URL('../config/release.json', import.meta.url)));
 const release = { ...actualRelease, sizeBytes: 4 };
-const pages = renderPages(site, release, { styles: '/assets/site.css', script: '/assets/app.js' });
+const pages = renderPages(site, release, {
+  styles: '/assets/site.css',
+  script: '/assets/app.js',
+  smsStyles: '/assets/sms.css',
+  smsScript: '/assets/sms.js'
+});
 const asset = { base64: 'aWNvbg==', size: 4, type: 'image/webp', etag: '"test-etag"', immutable: true };
 const makeWorker = (fetchImpl, overrides = {}) => createWorker({
   site, release, pages, assets: { '/assets/test.abcd.webp': asset }, fetchImpl, ...overrides
@@ -71,7 +76,7 @@ test('invalid multi-range input is rejected before contacting the source', async
   assert.equal(contacted, false);
 });
 
-test('unavailable, replaced or unexpected upstream files fail closed with a usable page', async t => {
+test('unavailable, replaced or unexpected upstream files fall back to the fixed APK URL', async t => {
   const cases = [
     ['network failure', async () => { throw new Error('private upstream details'); }],
     ['redirect', async () => new Response(null, { status: 302, headers: { Location: 'https://other.example/' } })],
@@ -81,14 +86,13 @@ test('unavailable, replaced or unexpected upstream files fail closed with a usab
     ['inconsistent range length', async () => sourceResponse('AP', { 'Content-Length': '3', 'Content-Range': 'bytes 0-1/4' }, 206)]
   ];
   for (const [name, fetchImpl] of cases) await t.test(name, async () => {
-    const result = await makeWorker(fetchImpl).fetch(request('/download'));
-    const text = await result.text();
-    assert.equal(result.status, 503);
-    assert.match(text, /Download temporarily unavailable/);
-    assert.equal(text.includes(release.url), false);
-    assert.equal(text.includes('private upstream details'), false);
+    const result = await makeWorker(fetchImpl).fetch(request('/download?url=https://evil.example/x.apk'));
+    assert.equal(result.status, 302);
+    assert.equal(result.headers.get('Location'), release.url);
+    assert.equal(result.headers.get('Location').includes('evil.example'), false);
     assert.equal(result.headers.get('Retry-After'), '60');
     assert.equal(result.headers.get('X-Robots-Tag'), 'noindex');
+    assert.equal(await result.text(), '');
   });
 });
 
@@ -98,13 +102,14 @@ test('upstream unsatisfiable ranges become a bounded 416 response', async () => 
   assert.equal(result.headers.get('Content-Range'), 'bytes */4');
 });
 
-test('campaign attribution reaches both download links without needing JavaScript', async () => {
+test('campaign attribution reaches download links as clean CloudFront APK URLs', async () => {
   const result = await makeWorker().fetch(request('/?utm_source=whatsapp&utm_campaign=launch-a&phone=919876543210&url=https://other.example'));
   const html = await result.text();
-  const apkLink = `${actualRelease.url}?utm_source=whatsapp&amp;utm_campaign=launch-a`;
-  assert.equal((html.match(new RegExp(`href="${apkLink.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g')) || []).length, 2);
+  assert.equal((html.match(new RegExp(`href="${actualRelease.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g')) || []).length, 2);
+  assert.equal(html.includes(`${actualRelease.url}?`), false);
   assert.match(html, new RegExp(`<link rel="canonical" href="${site.origin}/">`));
   assert.equal(html.includes('919876543210'), false);
+  assert.equal(html.includes('other.example'), false);
   assert.equal(result.headers.get('Cache-Control'), 'private, no-store');
   assert.equal(result.headers.has('Set-Cookie'), false);
 });
@@ -164,11 +169,21 @@ test('SEO routes agree on a clean canonical and contain factual application data
   assert.match(html, /name="robots" content="index,follow/);
   assert.match(await (await worker.fetch(request('/robots.txt'))).text(), /Disallow: \//);
   const sitemap = await (await worker.fetch(request('/sitemap.xml'))).text();
-  assert.equal((sitemap.match(/<loc>/g) || []).length, 2);
+  assert.equal((sitemap.match(/<loc>/g) || []).length, 3);
+  assert.equal(sitemap.includes(site.origin + '/sms/'), true);
   assert.equal(sitemap.includes(site.origin + '/privacy/'), true);
   const privacy = await worker.fetch(request('/privacy/'));
   assert.equal(privacy.status, 200);
   assert.match(await privacy.text(), /Website privacy notice/);
+  const sms = await worker.fetch(request('/sms/?utm_source=sms&utm_campaign=blast-a'));
+  assert.equal(sms.status, 200);
+  const smsHtml = await sms.text();
+  assert.match(smsHtml, /REGISTER/);
+  assert.match(smsHtml, /PLAY NOW/);
+  assert.match(smsHtml, /DOWNLOAD APK/);
+  assert.equal((smsHtml.match(new RegExp(`href="${actualRelease.url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`, 'g')) || []).length >= 4, true);
+  assert.equal(smsHtml.includes(`${actualRelease.url}?`), false);
+  assert.equal((await worker.fetch(request('/sms'))).status, 301);
 });
 
 test('HTTPS, restrictive browser headers, canonical aliases and allowed methods are enforced', async () => {

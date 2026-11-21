@@ -46,23 +46,38 @@ export function createWorker({ site, release, assets, pages, fetchImpl = (...arg
       if (path === '/download') {
         const file = await streamApk(request, release, fetchImpl);
         if (file.error === 416) return response(null, 416, { ...file.headers, 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' });
-        if (file.error) return htmlResponse(request, pages.downloadError, 503, {
-          'Cache-Control': 'no-store', 'Retry-After': '60', 'X-Robots-Tag': 'noindex'
-        });
+        if (file.error) {
+          // Upstream proxy can fail at the edge; fall back to the fixed HTTPS APK URL
+          // so Install/Download buttons still deliver the file (labels stay on /download only).
+          return response(null, 302, {
+            Location: release.url,
+            'Cache-Control': 'no-store',
+            'X-Robots-Tag': 'noindex',
+            'Retry-After': '60'
+          });
+        }
         if (request.method === 'GET') {
           recordEvent(request, env, site, 'download_request', collectAttribution(url.searchParams, site.attribution));
         }
         return response(file.body, file.status, file.headers);
       }
 
-      if (path === '/index.html' || path === '/privacy' || path === '/privacy/index.html') {
-        url.pathname = path === '/index.html' ? '/' : '/privacy/';
+      if (path === '/index.html' || path === '/privacy' || path === '/privacy/index.html' || path === '/sms' || path === '/sms/index.html') {
+        url.pathname = path === '/index.html' ? '/' : path.startsWith('/sms') ? '/sms/' : '/privacy/';
         return response(null, 301, { Location: url.href, 'Cache-Control': 'public, max-age=3600' });
       }
-      if (path === '/') {
+      const withApkAttribution = (html) => {
+        // Keep Install/Download hrefs on the clean CloudFront APK URL (no query).
+        // Campaign labels are recorded via /api/events and optional /download, not on the APK URL.
         const labels = new URLSearchParams(collectAttribution(url.searchParams, site.attribution)).toString();
-        const apkHref = `href="${htmlEscape(release.url)}"`;
-        const page = labels ? pages.index.replaceAll(apkHref, `href="${htmlEscape(release.url)}?${htmlEscape(labels)}"`) : pages.index;
+        return { page: html, labels };
+      };
+      if (path === '/') {
+        const { page, labels } = withApkAttribution(pages.index);
+        return htmlResponse(request, page, 200, labels ? { 'Cache-Control': 'private, no-store' } : {});
+      }
+      if (path === '/sms/') {
+        const { page, labels } = withApkAttribution(pages.sms);
         return htmlResponse(request, page, 200, labels ? { 'Cache-Control': 'private, no-store' } : {});
       }
       if (path === '/privacy/') return htmlResponse(request, pages.privacy);

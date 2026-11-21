@@ -200,3 +200,9 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+
+
+---
+SMS landing page fonts
+Sora and Fraunces are licensed under the SIL Open Font License 1.1.
+See public/assets/fonts/OFL-Sora.txt and public/assets/fonts/OFL-Fraunces.txt.
